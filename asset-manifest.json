@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.js": "/hitched-hikers/hitched-hikers.github.io/static/js/main.900d125b.js",
-    "index.html": "/hitched-hikers/hitched-hikers.github.io/index.html",
-    "main.900d125b.js.map": "/hitched-hikers/hitched-hikers.github.io/static/js/main.900d125b.js.map"
+    "main.js": "/static/js/main.cd088dd4.js",
+    "index.html": "/index.html",
+    "main.cd088dd4.js.map": "/static/js/main.cd088dd4.js.map"
   },
   "entrypoints": [
-    "static/js/main.900d125b.js"
+    "static/js/main.cd088dd4.js"
   ]
 }
