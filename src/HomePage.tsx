@@ -2,11 +2,12 @@ import { Button, Clock, grommet, Grommet, Header, HeaderExtendedProps, Page, Pag
 import { Moon, Sun } from 'grommet-icons';
 import { deepMerge } from 'grommet/utils';
 import { useState } from 'react';
+import styled from 'styled-components'
 
 const theme = deepMerge(grommet, {
   global: {
     colors: {
-      header: "neutral-4",
+      header: "neutral-1",
       pageBackground: {
         dark: "dark-1",
         light: "light-1"
@@ -20,24 +21,30 @@ const theme = deepMerge(grommet, {
   },
 });
 
+const HeaderText = styled(Text)`
+  width: 100%;
+  padding-left: 48px;
+`;
+
 const AppBar = (props: HeaderExtendedProps) => (
   <Header
     background="header"
+    justify='center'
     pad={{ left: "medium", right: "small", vertical: "small" }}
     {...props}
   />
 );
 
 function HomePage() {
-  const [darkTheme, setDarkTheme] = useState(true)
+  const [darkTheme, setDarkTheme] = useState(false)
 
   return (
     <Grommet theme={theme} full themeMode={darkTheme ? "dark" : "light"}>
       <Page height="100%" background="pageBackground">
         <AppBar>
-          <Text weight="bold" size="large">Hitched Hikers</Text>
+          <HeaderText textAlign='center' weight="bold" size="large">Hitched Hikers</HeaderText>
           <Button
-            icon={darkTheme ? <Moon /> : <Sun />}
+            icon={darkTheme ? <Sun /> : <Moon />}
             onClick={() => setDarkTheme((darkTheme) => !darkTheme)}
           />
         </AppBar>
