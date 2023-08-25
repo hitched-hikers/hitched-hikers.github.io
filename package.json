@@ -1,5 +1,6 @@
 {
-    "name": "homepage",
+    "name": "hitched-hikers-blog",
+    "homepage": "/hitched-hikers.github.io/#",
     "version": "0.1.0",
     "private": true,
     "dependencies": {
