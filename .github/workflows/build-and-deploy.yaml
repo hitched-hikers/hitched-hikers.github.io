@@ -13,7 +13,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
         with:
-          repository: adrian-patterson/adrian-patterson.github.io
+          repository: hitched-hikers/hitched-hikers.github.io
           ref: main
           token: ${{ secrets.PAT }}
       - name: Set-up Node
