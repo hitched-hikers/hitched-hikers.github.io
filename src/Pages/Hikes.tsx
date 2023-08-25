@@ -2,7 +2,6 @@ import {
   Accordion,
   AccordionPanel,
   Box,
-  Page,
   Text,
   PageContent,
   WorldMap,
@@ -10,7 +9,8 @@ import {
 } from "grommet";
 import AppHeader from "../Components/AppHeader";
 import styled from "styled-components";
-import { useState } from "react";
+import { useRef, useState } from "react";
+import AppPage from "../Components/AppPage";
 
 enum RootIndexes {
   Canada = 0,
@@ -45,6 +45,10 @@ function Hikes(): JSX.Element {
     number | number[] | undefined
   >(undefined);
 
+  const canadaRef = useRef<null | HTMLDivElement>(null);
+  const italyRef = useRef<null | HTMLDivElement>(null);
+  const usaRef = useRef<null | HTMLDivElement>(null);
+
   const places = [
     {
       name: "Amalfi",
@@ -53,6 +57,7 @@ function Hikes(): JSX.Element {
       onClick: () => {
         setRootActiveIndex(RootIndexes.Italy);
         setItalyActiveIndex(ItalyIndexes.Amalfi);
+        italyRef.current?.scrollIntoView({ behavior: "smooth" });
       },
     },
     {
@@ -62,6 +67,7 @@ function Hikes(): JSX.Element {
       onClick: () => {
         setRootActiveIndex(RootIndexes.Usa);
         setUsaActiveIndex(UsaIndexes.Adirondacks);
+        usaRef.current?.scrollIntoView({ behavior: "smooth" });
       },
     },
     {
@@ -71,6 +77,7 @@ function Hikes(): JSX.Element {
       onClick: () => {
         setRootActiveIndex(RootIndexes.Canada);
         setCanadaActiveIndex(CanadaIndexes.Banff);
+        canadaRef.current?.scrollIntoView({ behavior: "smooth" });
       },
     },
     {
@@ -80,14 +87,15 @@ function Hikes(): JSX.Element {
       onClick: () => {
         setRootActiveIndex(RootIndexes.Canada);
         setCanadaActiveIndex(CanadaIndexes.Gaspe);
+        canadaRef.current?.scrollIntoView({ behavior: "smooth" });
       },
     },
   ];
 
   return (
-    <Page height="100vw" background="pageBackground">
+    <AppPage>
       <AppHeader title={"Hikes"} />
-      <PageContent align="center">
+      <PageContent height="100%" align="center">
         <StyledMap places={places} color="graph-1" />
 
         <LocationCard background={{ dark: "dark-2", light: "light-2" }}>
@@ -95,78 +103,90 @@ function Hikes(): JSX.Element {
             activeIndex={rootActiveIndex}
             onActive={(active) => setRootActiveIndex(active)}
           >
-            <CountryAccordionPanel label="🇨🇦 Canada">
-              <NestedRegionAccordion
-                activeIndex={canadaActiveIndex}
-                onActive={(active) => setCanadaActiveIndex(active)}
-                background={{ dark: "dark-3", light: "light-3" }}
+            <div ref={canadaRef}>
+              <CountryAccordionPanel ref={canadaRef} label="🇨🇦 Canada">
+                <NestedRegionAccordion
+                  activeIndex={canadaActiveIndex}
+                  onActive={(active) => setCanadaActiveIndex(active)}
+                  background={{ dark: "dark-3", light: "light-3" }}
+                >
+                  <AccordionPanel label="Banff">
+                    <StyledHikeNameBox pad="medium">
+                      <Text>Cory Pass</Text>
+                    </StyledHikeNameBox>
+                  </AccordionPanel>
+                  <AccordionPanel label="Gaspe">
+                    <StyledHikeNameBox pad="medium">
+                      <Text>Mount Jacques Cartier</Text>
+                    </StyledHikeNameBox>
+                    <StyledHikeNameBox pad="medium">
+                      <Text>Mount Albert</Text>
+                    </StyledHikeNameBox>
+                  </AccordionPanel>
+                </NestedRegionAccordion>
+              </CountryAccordionPanel>
+            </div>
+
+            <div ref={italyRef}>
+              <CountryAccordionPanel label="🇮🇹 Italy">
+                <NestedRegionAccordion
+                  activeIndex={italyActiveIndex}
+                  onActive={(active) => setItalyActiveIndex(active)}
+                  background={{ dark: "dark-3", light: "light-3" }}
+                >
+                  <AccordionPanel label="Amalfi Coast">
+                    <StyledHikeNameBox pad="medium">
+                      <Text>Path of the Gods</Text>
+                    </StyledHikeNameBox>
+                    <StyledHikeNameBox pad="medium">
+                      <Text>Path of the Lemons</Text>
+                    </StyledHikeNameBox>
+                  </AccordionPanel>
+                </NestedRegionAccordion>
+              </CountryAccordionPanel>
+            </div>
+
+            <div ref={usaRef}>
+              <CountryAccordionPanel
+                ref={usaRef}
+                label="🇺🇸 United States of America"
               >
-                <AccordionPanel label="Banff">
-                  <StyledHikeNameBox pad="medium">
-                    <Text>Cory Pass</Text>
-                  </StyledHikeNameBox>
-                </AccordionPanel>
-                <AccordionPanel label="Gaspe">
-                  <StyledHikeNameBox pad="medium">
-                    <Text>Mount Jacques Cartier</Text>
-                  </StyledHikeNameBox>
-                  <StyledHikeNameBox pad="medium">
-                    <Text>Mount Albert</Text>
-                  </StyledHikeNameBox>
-                </AccordionPanel>
-              </NestedRegionAccordion>
-            </CountryAccordionPanel>
-            <CountryAccordionPanel label="🇮🇹 Italy">
-              <NestedRegionAccordion
-                activeIndex={italyActiveIndex}
-                onActive={(active) => setItalyActiveIndex(active)}
-                background={{ dark: "dark-3", light: "light-3" }}
-              >
-                <AccordionPanel label="Amalfi Coast">
-                  <StyledHikeNameBox pad="medium">
-                    <Text>Path of the Gods</Text>
-                  </StyledHikeNameBox>
-                  <StyledHikeNameBox pad="medium">
-                    <Text>Path of the Lemons</Text>
-                  </StyledHikeNameBox>
-                </AccordionPanel>
-              </NestedRegionAccordion>
-            </CountryAccordionPanel>
-            <CountryAccordionPanel label="🇺🇸 United States of America">
-              <NestedRegionAccordion
-                activeIndex={usaActiveIndex}
-                onActive={(active) => setUsaActiveIndex(active)}
-                background={{ dark: "dark-3", light: "light-3" }}
-              >
-                <AccordionPanel label="Adirondacks">
-                  <StyledHikeNameBox pad="medium">
-                    <Text>Mount Giant</Text>
-                  </StyledHikeNameBox>
-                  <StyledHikeNameBox pad="medium">
-                    <Text>Algonquin Peak</Text>
-                  </StyledHikeNameBox>
-                </AccordionPanel>
-              </NestedRegionAccordion>
-            </CountryAccordionPanel>
+                <NestedRegionAccordion
+                  activeIndex={usaActiveIndex}
+                  onActive={(active) => setUsaActiveIndex(active)}
+                  background={{ dark: "dark-3", light: "light-3" }}
+                >
+                  <AccordionPanel label="Adirondacks">
+                    <StyledHikeNameBox pad="medium">
+                      <Text>Mount Giant</Text>
+                    </StyledHikeNameBox>
+                    <StyledHikeNameBox pad="medium">
+                      <Text>Algonquin Peak</Text>
+                    </StyledHikeNameBox>
+                  </AccordionPanel>
+                </NestedRegionAccordion>
+              </CountryAccordionPanel>
+            </div>
           </RootAccordion>
         </LocationCard>
       </PageContent>
-    </Page>
+    </AppPage>
   );
 }
 
 const StyledMap = styled(WorldMap)`
   height: fit-content;
-  max-width: 90%;
+  max-width: 70%;
   padding-top: 24px;
 `;
 
 const LocationCard = styled(Card)`
+  height: auto;
+  overflow: visible;
   margin-top: 24px;
   margin-bottom: 24px;
   width: 90%;
   box-shadow: none;
-  overflow: visible;
 `;
 
 const RootAccordion = styled(Accordion)`
