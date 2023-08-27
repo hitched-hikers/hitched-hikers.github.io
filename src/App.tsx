@@ -1,9 +1,9 @@
 import { darkModeAtom, theme } from "./Utils/Theme";
 import { HashRouter, Route, Routes } from "react-router-dom";
-import Home from "./Pages/Home";
+import Home from "./Pages/Home/Home";
 import { useAtom } from "jotai";
 import { Grommet } from "grommet";
-import Hikes from "./Pages/Hikes";
+import Hikes from "./Pages/Hikes/Hikes";
 
 function App(): JSX.Element {
   const [darkMode] = useAtom(darkModeAtom);
