@@ -1,17 +1,16 @@
-import {
-  Accordion,
-  AccordionPanel,
-  Box,
-  Text,
-  PageContent,
-  WorldMap,
-  Card,
-} from "grommet";
+import { Accordion, PageContent, WorldMap, Card } from "grommet";
 import AppHeader from "../../Components/AppHeader";
 import styled from "styled-components";
-import { useRef, useState } from "react";
+import { MutableRefObject, useRef, useState } from "react";
 import AppPage from "../../Components/AppPage";
 import CountryAccordion from "./CountryAccordion";
+import {
+  adirondackHikes,
+  amalfiHikes,
+  banffHikes,
+  gaspeHikes,
+  greenMountainHikes,
+} from "./places";
 
 enum RootIndexes {
   Canada = 0,
@@ -25,6 +24,7 @@ enum ItalyIndexes {
 
 enum UsaIndexes {
   Adirondacks = 0,
+  GreenMountains = 1,
 }
 
 enum CanadaIndexes {
@@ -36,43 +36,14 @@ function Hikes(): JSX.Element {
   const [rootActiveIndex, setRootActiveIndex] = useState<
     number | number[] | undefined
   >(undefined);
-  const [italyActiveIndex, setItalyActiveIndex] = useState<
-    number | number[] | undefined
-  >(undefined);
-  const [usaActiveIndex, setUsaActiveIndex] = useState<
-    number | number[] | undefined
-  >(undefined);
+
+  // Canada content
   const [canadaActiveIndex, setCanadaActiveIndex] = useState<
     number | number[] | undefined
   >(undefined);
-
-  const canadaRef = useRef<null | HTMLDivElement>(null);
   const banffRef = useRef<null | HTMLDivElement>(null);
   const gapseRef = useRef<null | HTMLDivElement>(null);
-  const italyRef = useRef<null | HTMLDivElement>(null);
-  const usaRef = useRef<null | HTMLDivElement>(null);
-
-  const places = [
-    {
-      name: "Amalfi",
-      location: [40.6333, 14.6029],
-      color: "graph-4",
-      onClick: () => {
-        setRootActiveIndex(RootIndexes.Italy);
-        setItalyActiveIndex(ItalyIndexes.Amalfi);
-        italyRef.current?.scrollIntoView({ behavior: "smooth" });
-      },
-    },
-    {
-      name: "Adirondacks",
-      location: [44.2795, -73.9799],
-      color: "graph-4",
-      onClick: () => {
-        setRootActiveIndex(RootIndexes.Usa);
-        setUsaActiveIndex(UsaIndexes.Adirondacks);
-        usaRef.current?.scrollIntoView({ behavior: "smooth" });
-      },
-    },
+  const canadaMapRegions = [
     {
       name: "Banff",
       location: [51.4968, -115.9281],
@@ -80,7 +51,7 @@ function Hikes(): JSX.Element {
       onClick: () => {
         setRootActiveIndex(RootIndexes.Canada);
         setCanadaActiveIndex(CanadaIndexes.Banff);
-        banffRef.current?.scrollIntoView({ behavior: "smooth" })
+        scrollRefIntoViewDelayed(banffRef);
       },
     },
     {
@@ -90,70 +61,138 @@ function Hikes(): JSX.Element {
       onClick: () => {
         setRootActiveIndex(RootIndexes.Canada);
         setCanadaActiveIndex(CanadaIndexes.Gaspe);
-        gapseRef.current?.scrollIntoView({ behavior: "smooth" });
+        scrollRefIntoViewDelayed(gapseRef);
       },
     },
   ];
+
+  // Italy content
+  const [italyActiveIndex, setItalyActiveIndex] = useState<
+    number | number[] | undefined
+  >(undefined);
+  const amalfiRef = useRef<null | HTMLDivElement>(null);
+  const italyMapRegions = [
+    {
+      name: "Amalfi",
+      location: [40.6333, 14.6029],
+      color: "graph-4",
+      onClick: () => {
+        setRootActiveIndex(RootIndexes.Italy);
+        setItalyActiveIndex(ItalyIndexes.Amalfi);
+        scrollRefIntoViewDelayed(amalfiRef);
+      },
+    },
+  ];
+
+  // USA content
+  const [usaActiveIndex, setUsaActiveIndex] = useState<
+    number | number[] | undefined
+  >(undefined);
+  const adirondacksRef = useRef<null | HTMLDivElement>(null);
+  const greenMountainsRef = useRef<null | HTMLDivElement>(null);
+  const usaMapRegions = [
+    {
+      name: "Adirondacks",
+      location: [44.2795, -73.9799],
+      color: "graph-4",
+      onClick: () => {
+        setRootActiveIndex(RootIndexes.Usa);
+        setUsaActiveIndex(UsaIndexes.Adirondacks);
+        scrollRefIntoViewDelayed(adirondacksRef);
+      },
+    },
+    {
+      name: "Green Mountains",
+      location: [44.7917, -72.5828],
+      color: "graph-4",
+      onClick: () => {
+        setRootActiveIndex(RootIndexes.Usa);
+        setUsaActiveIndex(UsaIndexes.GreenMountains);
+        scrollRefIntoViewDelayed(greenMountainsRef);
+      },
+    },
+  ];
+
+  const scrollRefIntoViewDelayed = (
+    ref: MutableRefObject<HTMLDivElement | null>
+  ) => {
+    setTimeout(() => ref.current?.scrollIntoView({ behavior: "smooth" }), 50);
+  };
 
   return (
     <AppPage>
       <AppHeader title={"Hikes"} />
       <StyledPageContent align="center">
-        <StyledMap places={places} color="graph-1" />
+        <StyledMap
+          places={[...canadaMapRegions, ...italyMapRegions, ...usaMapRegions]}
+          color="graph-1"
+        />
 
         <LocationCard background={{ dark: "dark-2", light: "light-2" }}>
           <RootAccordion
             activeIndex={rootActiveIndex}
-            onActive={(active) => setRootActiveIndex(active)}
-          >
+            onActive={(active) => {
+              setRootActiveIndex(active);
 
+              if (rootActiveIndex === RootIndexes.Canada) {
+                banffRef.current?.scrollIntoView({ behavior: "smooth" });
+              }
+            }}
+          >
             <CountryAccordion
               activeIndex={canadaActiveIndex}
-              setActiveIndex={(active: number | number[]) => setCanadaActiveIndex(active)}
+              setActiveIndex={(active: number | number[]) =>
+                setCanadaActiveIndex(active)
+              }
               country={"🇨🇦 Canada"}
-              regions={[{ regionName: "Banff", htmlRef: banffRef, places: [{ hikeName: "Cory Pass" }] }, { regionName: "Gaspe", htmlRef: gapseRef, places: [{ hikeName: "Mount Jacques Cartier" }, { hikeName: "Mount Albert" }] }]}
+              regions={[
+                {
+                  regionName: "Banff",
+                  htmlRef: banffRef,
+                  places: banffHikes,
+                },
+                {
+                  regionName: "Gaspe",
+                  htmlRef: gapseRef,
+                  places: gaspeHikes,
+                },
+              ]}
             />
 
-            <div ref={italyRef}>
-              <CountryAccordionPanel label="🇮🇹 Italy">
-                <NestedRegionAccordion
-                  activeIndex={italyActiveIndex}
-                  onActive={(active) => setItalyActiveIndex(active)}
-                  background={{ dark: "dark-3", light: "light-3" }}
-                >
-                  <AccordionPanel label="Amalfi Coast">
-                    <StyledHikeNameBox pad="medium">
-                      <Text>Path of the Gods</Text>
-                    </StyledHikeNameBox>
-                    <StyledHikeNameBox pad="medium">
-                      <Text>Path of the Lemons</Text>
-                    </StyledHikeNameBox>
-                  </AccordionPanel>
-                </NestedRegionAccordion>
-              </CountryAccordionPanel>
-            </div>
+            <CountryAccordion
+              activeIndex={italyActiveIndex}
+              setActiveIndex={(active: number | number[]) =>
+                setCanadaActiveIndex(active)
+              }
+              country={"🇮🇹 Italy"}
+              regions={[
+                {
+                  regionName: "Amalfi",
+                  htmlRef: amalfiRef,
+                  places: amalfiHikes,
+                },
+              ]}
+            />
 
-            <div ref={usaRef}>
-              <CountryAccordionPanel
-                ref={usaRef}
-                label="🇺🇸 United States of America"
-              >
-                <NestedRegionAccordion
-                  activeIndex={usaActiveIndex}
-                  onActive={(active) => setUsaActiveIndex(active)}
-                  background={{ dark: "dark-3", light: "light-3" }}
-                >
-                  <AccordionPanel label="Adirondacks">
-                    <StyledHikeNameBox pad="medium">
-                      <Text>Mount Giant</Text>
-                    </StyledHikeNameBox>
-                    <StyledHikeNameBox pad="medium">
-                      <Text>Algonquin Peak</Text>
-                    </StyledHikeNameBox>
-                  </AccordionPanel>
-                </NestedRegionAccordion>
-              </CountryAccordionPanel>
-            </div>
+            <CountryAccordion
+              activeIndex={usaActiveIndex}
+              setActiveIndex={(active: number | number[]) =>
+                setCanadaActiveIndex(active)
+              }
+              country={"🇺🇸 United States of America"}
+              regions={[
+                {
+                  regionName: "Adirondacks",
+                  htmlRef: adirondacksRef,
+                  places: adirondackHikes,
+                },
+                {
+                  regionName: "Green Mountains",
+                  htmlRef: greenMountainsRef,
+                  places: greenMountainHikes,
+                },
+              ]}
+            />
           </RootAccordion>
         </LocationCard>
       </StyledPageContent>
@@ -162,8 +201,8 @@ function Hikes(): JSX.Element {
 }
 
 const StyledPageContent = styled(PageContent)`
-width: 100%;
-max-width: 480px;
+  width: 100%;
+  max-width: 640px;
 `;
 
 const StyledMap = styled(WorldMap)`
@@ -183,19 +222,6 @@ const LocationCard = styled(Card)`
 
 const RootAccordion = styled(Accordion)`
   width: 100%;
-`;
-
-const CountryAccordionPanel = styled(AccordionPanel)`
-  padding-left: 8px;
-`;
-
-const NestedRegionAccordion = styled(Accordion)`
-  padding-left: 24px;
-  border-radius: 6px;
-`;
-
-const StyledHikeNameBox = styled(Box)`
-  padding-left: 24px;
 `;
 
 export default Hikes;
