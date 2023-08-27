@@ -1,9 +1,10 @@
-import { Clock, Page, PageContent, Text } from "grommet";
-import AppHeader from "../Components/AppHeader";
+import { Clock, PageContent, Text } from "grommet";
+import AppHeader from "../../Components/AppHeader";
+import AppPage from "../../Components/AppPage";
 
 function Home(): JSX.Element {
   return (
-    <Page height="100vw" background="pageBackground">
+    <AppPage>
       <AppHeader title={"Hitched Hikers"} />
       <PageContent align="center">
         <Text margin="20px" size="large">
@@ -11,7 +12,7 @@ function Home(): JSX.Element {
         </Text>
         <Clock type="digital" />
       </PageContent>
-    </Page>
+    </AppPage>
   );
 }
 

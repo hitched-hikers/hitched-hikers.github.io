@@ -7,10 +7,11 @@ import {
   WorldMap,
   Card,
 } from "grommet";
-import AppHeader from "../Components/AppHeader";
+import AppHeader from "../../Components/AppHeader";
 import styled from "styled-components";
 import { useRef, useState } from "react";
-import AppPage from "../Components/AppPage";
+import AppPage from "../../Components/AppPage";
+import CountryAccordion from "./CountryAccordion";
 
 enum RootIndexes {
   Canada = 0,
@@ -46,6 +47,8 @@ function Hikes(): JSX.Element {
   >(undefined);
 
   const canadaRef = useRef<null | HTMLDivElement>(null);
+  const banffRef = useRef<null | HTMLDivElement>(null);
+  const gapseRef = useRef<null | HTMLDivElement>(null);
   const italyRef = useRef<null | HTMLDivElement>(null);
   const usaRef = useRef<null | HTMLDivElement>(null);
 
@@ -77,7 +80,7 @@ function Hikes(): JSX.Element {
       onClick: () => {
         setRootActiveIndex(RootIndexes.Canada);
         setCanadaActiveIndex(CanadaIndexes.Banff);
-        canadaRef.current?.scrollIntoView({ behavior: "smooth" });
+        banffRef.current?.scrollIntoView({ behavior: "smooth" })
       },
     },
     {
@@ -87,7 +90,7 @@ function Hikes(): JSX.Element {
       onClick: () => {
         setRootActiveIndex(RootIndexes.Canada);
         setCanadaActiveIndex(CanadaIndexes.Gaspe);
-        canadaRef.current?.scrollIntoView({ behavior: "smooth" });
+        gapseRef.current?.scrollIntoView({ behavior: "smooth" });
       },
     },
   ];
@@ -95,7 +98,7 @@ function Hikes(): JSX.Element {
   return (
     <AppPage>
       <AppHeader title={"Hikes"} />
-      <PageContent height="100%" align="center">
+      <StyledPageContent align="center">
         <StyledMap places={places} color="graph-1" />
 
         <LocationCard background={{ dark: "dark-2", light: "light-2" }}>
@@ -103,29 +106,13 @@ function Hikes(): JSX.Element {
             activeIndex={rootActiveIndex}
             onActive={(active) => setRootActiveIndex(active)}
           >
-            <div ref={canadaRef}>
-              <CountryAccordionPanel ref={canadaRef} label="🇨🇦 Canada">
-                <NestedRegionAccordion
-                  activeIndex={canadaActiveIndex}
-                  onActive={(active) => setCanadaActiveIndex(active)}
-                  background={{ dark: "dark-3", light: "light-3" }}
-                >
-                  <AccordionPanel label="Banff">
-                    <StyledHikeNameBox pad="medium">
-                      <Text>Cory Pass</Text>
-                    </StyledHikeNameBox>
-                  </AccordionPanel>
-                  <AccordionPanel label="Gaspe">
-                    <StyledHikeNameBox pad="medium">
-                      <Text>Mount Jacques Cartier</Text>
-                    </StyledHikeNameBox>
-                    <StyledHikeNameBox pad="medium">
-                      <Text>Mount Albert</Text>
-                    </StyledHikeNameBox>
-                  </AccordionPanel>
-                </NestedRegionAccordion>
-              </CountryAccordionPanel>
-            </div>
+
+            <CountryAccordion
+              activeIndex={canadaActiveIndex}
+              setActiveIndex={(active: number | number[]) => setCanadaActiveIndex(active)}
+              country={"🇨🇦 Canada"}
+              regions={[{ regionName: "Banff", htmlRef: banffRef, places: [{ hikeName: "Cory Pass" }] }, { regionName: "Gaspe", htmlRef: gapseRef, places: [{ hikeName: "Mount Jacques Cartier" }, { hikeName: "Mount Albert" }] }]}
+            />
 
             <div ref={italyRef}>
               <CountryAccordionPanel label="🇮🇹 Italy">
@@ -169,23 +156,28 @@ function Hikes(): JSX.Element {
             </div>
           </RootAccordion>
         </LocationCard>
-      </PageContent>
+      </StyledPageContent>
     </AppPage>
   );
 }
 
+const StyledPageContent = styled(PageContent)`
+width: 100%;
+max-width: 480px;
+`;
+
 const StyledMap = styled(WorldMap)`
   height: fit-content;
-  max-width: 70%;
+  width: 100%;
   padding-top: 24px;
 `;
 
 const LocationCard = styled(Card)`
   height: auto;
+  width: 100%;
   overflow: visible;
   margin-top: 24px;
   margin-bottom: 24px;
-  width: 90%;
   box-shadow: none;
 `;
 
