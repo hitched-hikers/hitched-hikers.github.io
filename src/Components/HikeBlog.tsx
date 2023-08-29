@@ -9,7 +9,7 @@ interface HikeBlogProps {}
 function HikeBlog(props: HikeBlogProps): JSX.Element {
   return (
     <AppPage>
-      <AppHeader title="Algonquin Peak" />
+      <AppHeader title="ALGONQUIN PEAK" />
 
       <StyledPageContent alignContent="center">
         <Carousel fill>
