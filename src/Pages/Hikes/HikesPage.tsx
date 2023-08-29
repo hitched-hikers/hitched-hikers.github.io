@@ -10,7 +10,8 @@ import {
   banffHikes,
   gaspeHikes,
   greenMountainHikes,
-} from "./places";
+  squamishHikes,
+} from "./hikes";
 
 enum RootIndexes {
   Canada = 0,
@@ -30,9 +31,10 @@ enum UsaIndexes {
 enum CanadaIndexes {
   Banff = 0,
   Gaspe = 1,
+  Squamish = 2,
 }
 
-function Hikes(): JSX.Element {
+function HikesPage(): JSX.Element {
   const [rootActiveIndex, setRootActiveIndex] = useState<
     number | number[] | undefined
   >(undefined);
@@ -43,6 +45,7 @@ function Hikes(): JSX.Element {
   >(undefined);
   const banffRef = useRef<null | HTMLDivElement>(null);
   const gapseRef = useRef<null | HTMLDivElement>(null);
+  const squamishRef = useRef<null | HTMLDivElement>(null);
   const canadaMapRegions = [
     {
       name: "Banff",
@@ -62,6 +65,16 @@ function Hikes(): JSX.Element {
         setRootActiveIndex(RootIndexes.Canada);
         setCanadaActiveIndex(CanadaIndexes.Gaspe);
         scrollRefIntoViewDelayed(gapseRef);
+      },
+    },
+    {
+      name: "Squamish",
+      location: [49.7016, -123.1558],
+      color: "graph-4",
+      onClick: () => {
+        setRootActiveIndex(RootIndexes.Canada);
+        setCanadaActiveIndex(CanadaIndexes.Squamish);
+        scrollRefIntoViewDelayed(squamishRef);
       },
     },
   ];
@@ -113,10 +126,12 @@ function Hikes(): JSX.Element {
     },
   ];
 
+  // We need a delay to wait for accordion to open fully and ref to be non-null
+  // So we set a timeout before scrolling
   const scrollRefIntoViewDelayed = (
     ref: MutableRefObject<HTMLDivElement | null>
   ) => {
-    setTimeout(() => ref.current?.scrollIntoView({ behavior: "smooth" }), 50);
+    setTimeout(() => ref.current?.scrollIntoView({ behavior: "smooth" }), 100);
   };
 
   return (
@@ -147,14 +162,19 @@ function Hikes(): JSX.Element {
               country={"🇨🇦 Canada"}
               regions={[
                 {
-                  regionName: "Banff",
+                  name: "Banff",
                   htmlRef: banffRef,
-                  places: banffHikes,
+                  hikes: banffHikes,
                 },
                 {
-                  regionName: "Gaspe",
+                  name: "Gaspe",
                   htmlRef: gapseRef,
-                  places: gaspeHikes,
+                  hikes: gaspeHikes,
+                },
+                {
+                  name: "Squamish",
+                  htmlRef: squamishRef,
+                  hikes: squamishHikes,
                 },
               ]}
             />
@@ -167,9 +187,9 @@ function Hikes(): JSX.Element {
               country={"🇮🇹 Italy"}
               regions={[
                 {
-                  regionName: "Amalfi",
+                  name: "Amalfi",
                   htmlRef: amalfiRef,
-                  places: amalfiHikes,
+                  hikes: amalfiHikes,
                 },
               ]}
             />
@@ -182,14 +202,14 @@ function Hikes(): JSX.Element {
               country={"🇺🇸 United States of America"}
               regions={[
                 {
-                  regionName: "Adirondacks",
+                  name: "Adirondacks",
                   htmlRef: adirondacksRef,
-                  places: adirondackHikes,
+                  hikes: adirondackHikes,
                 },
                 {
-                  regionName: "Green Mountains",
+                  name: "Green Mountains",
                   htmlRef: greenMountainsRef,
-                  places: greenMountainHikes,
+                  hikes: greenMountainHikes,
                 },
               ]}
             />
@@ -224,4 +244,4 @@ const RootAccordion = styled(Accordion)`
   width: 100%;
 `;
 
-export default Hikes;
+export default HikesPage;

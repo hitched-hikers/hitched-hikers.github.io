@@ -2,7 +2,7 @@ import { Clock, PageContent, Text } from "grommet";
 import AppHeader from "../../Components/AppHeader";
 import AppPage from "../../Components/AppPage";
 
-function Home(): JSX.Element {
+function HomePage(): JSX.Element {
   return (
     <AppPage>
       <AppHeader title={"Hitched Hikers"} />
@@ -16,4 +16,4 @@ function Home(): JSX.Element {
   );
 }
 
-export default Home;
+export default HomePage;

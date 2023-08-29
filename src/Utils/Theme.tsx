@@ -29,6 +29,15 @@ const theme: ThemeType = deepMerge(grommet, {
   },
 });
 
-const darkModeAtom = atom<boolean>(false);
+// Get system theme and initialize dark theme atom
+let darkMode = false;
+if (
+  window.matchMedia &&
+  window.matchMedia("(prefers-color-scheme: dark)").matches
+) {
+  darkMode = true;
+}
+
+const darkModeAtom = atom<boolean>(darkMode);
 
 export { darkModeAtom, theme };

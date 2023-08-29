@@ -1,6 +1,8 @@
 import { Accordion, AccordionPanel, Box, Text } from "grommet";
 import styled from "styled-components";
-import { HikingRegion } from "./places";
+import { Hike } from "./hikes";
+import { Link } from "react-router-dom";
+import { MutableRefObject } from "react";
 
 interface CountryAccordionProps {
   activeIndex: number | number[] | undefined;
@@ -9,10 +11,17 @@ interface CountryAccordionProps {
   regions: HikingRegion[];
 }
 
+export interface HikingRegion {
+  name: string;
+  htmlRef: MutableRefObject<HTMLDivElement | null>;
+  hikes: Hike[];
+}
+
 function CountryAccordion(props: CountryAccordionProps): JSX.Element {
   return (
     <CountryAccordionPanel label={props.country}>
       <NestedRegionAccordion
+        multiple
         activeIndex={props.activeIndex}
         onActive={(active: number | number[]) => props.setActiveIndex(active)}
         background={{ dark: "dark-3", light: "light-3" }}
@@ -20,14 +29,16 @@ function CountryAccordion(props: CountryAccordionProps): JSX.Element {
         {props.regions.map((region) => {
           return (
             <AccordionPanel
-              key={region.regionName}
+              key={region.name}
               ref={region.htmlRef}
-              label={region.regionName}
+              label={region.name}
             >
-              {region.places.map((place) => {
+              {region.hikes.map((hike) => {
                 return (
-                  <StyledHikeNameBox key={place.hikeName} pad="medium">
-                    <Text>{place.hikeName}</Text>
+                  <StyledHikeNameBox key={hike.name} pad="medium">
+                    <StyledLink to={hike.blogPath}>
+                      <Text>{hike.name}</Text>
+                    </StyledLink>
                   </StyledHikeNameBox>
                 );
               })}
@@ -50,6 +61,15 @@ const NestedRegionAccordion = styled(Accordion)`
 
 const StyledHikeNameBox = styled(Box)`
   padding-left: 24px;
+
+  &:hover {
+    opacity: 0.6;
+  }
+`;
+
+const StyledLink = styled(Link)`
+  text-decoration: inherit;
+  color: inherit;
 `;
 
 export default CountryAccordion;
