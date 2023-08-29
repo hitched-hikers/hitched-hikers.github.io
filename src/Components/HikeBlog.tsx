@@ -1,4 +1,16 @@
-import { Carousel, Image, PageContent } from "grommet";
+import {
+  Card,
+  Carousel,
+  Heading,
+  Image,
+  Markdown,
+  PageContent,
+  PageHeader,
+  Table,
+  TableBody,
+  TableCell,
+  TableRow,
+} from "grommet";
 import AppHeader from "./AppHeader";
 import AppPage from "./AppPage";
 import styled from "styled-components";
@@ -9,51 +21,83 @@ interface HikeBlogProps {}
 function HikeBlog(props: HikeBlogProps): JSX.Element {
   return (
     <AppPage>
-      <AppHeader title="ALGONQUIN PEAK" />
+      <AppHeader title="" />
 
       <StyledPageContent alignContent="center">
-        <Carousel fill>
-          {/* <Image
+        <PageHeader
+          title={"Algonquin Peak"}
+          subtitle={
+            "An overnight backpacking trip. The muddiest & slippiest of hikes yet."
+          }
+        />
+
+        <StyledCarousel controls="arrows" wrap width="640px" play={5000} fill>
+          <StyledImage
             fit="cover"
             src={imageUrlFormatter("1eaJxC2abW2XT3GNjUugENRpaDjRhnpWo")}
           />
-          <Image
+          <StyledImage
             fit="cover"
             src={imageUrlFormatter("1ST7TQ_i3EaHpdASGsvAPSKO6wdh_OndW")}
           />
-          <Image
+          <StyledImage
             fit="cover"
             src={imageUrlFormatter("1AcjFQMg-dETWdHdHGeV5DUBp3zYami0c")}
           />
-          <Image
+          <StyledImage
             fit="cover"
             src={imageUrlFormatter("13iVrbQLE46PI4i2thgn1Uj9KkmmmjUPq")}
           />
-          <Image
+          <StyledImage
             fit="cover"
             src={imageUrlFormatter("1IGHtrr8E155juihXv2CnuzEUxMAKR23J")}
           />
-          <Image
+          <StyledImage
             fit="cover"
             src={imageUrlFormatter("1taDbdZ4vL6UqGlIuLs6jGvKH7KXb7KGd")}
           />
-          <Image
+          <StyledImage
             fit="cover"
             src={imageUrlFormatter("14hi3ICHlfO_WH_nTrcFb8dYB0rcB6uc_")}
           />
-          <Image
+          <StyledImage
             fit="cover"
             src={imageUrlFormatter("1NOji8GDyE7RMqyfwhu-Nys3E9HWJ72Bi")}
           />
-          <Image
+          <StyledImage
             fit="cover"
             src={imageUrlFormatter("1ITAfDzga7ujGGUL5D4tGMV-by8aT2tQ4")}
-          /> */}
-          <Image
-            fit="cover"
-            src={imageUrlFormatter("1ovTryrjR_i6MODZSe9ihTQAaiUQczXdq")}
           />
-        </Carousel>
+        </StyledCarousel>
+
+        <Heading level={2}>In Numbers</Heading>
+        <StatsCard
+          alignSelf="center"
+          background={{ dark: "dark-2", light: "light-3" }}
+        >
+          <Table>
+            <TableBody>
+              <TableRow>
+                <TableCell scope="row">
+                  <strong>Mileage</strong>
+                </TableCell>
+                <TableCell>16.32 mi</TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell scope="row">
+                  <strong>Elevation Gain</strong>
+                </TableCell>
+                <TableCell>3,632 ft</TableCell>
+              </TableRow>
+            </TableBody>
+          </Table>
+        </StatsCard>
+
+        <Heading level={2}>The Hike</Heading>
+        <Markdown>
+          It was a grueling climb with the gruesome twosome. Much mud and
+          slippery rocks were encountered along the way.
+        </Markdown>
       </StyledPageContent>
     </AppPage>
   );
@@ -61,7 +105,24 @@ function HikeBlog(props: HikeBlogProps): JSX.Element {
 
 const StyledPageContent = styled(PageContent)`
   width: 100%;
-  max-width: 640px;
+  max-width: 1024px;
+`;
+
+const StyledImage = styled(Image)`
+  max-width: 100%;
+  width: auto;
+  height: auto;
+`;
+
+const StyledCarousel = styled(Carousel)`
+  max-width: 100%;
+  width: auto;
+  height: auto;
+`;
+
+const StatsCard = styled(Card)`
+  width: 100%;
+  box-shadow: none;
 `;
 
 export default HikeBlog;
