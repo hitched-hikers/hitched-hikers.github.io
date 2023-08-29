@@ -1,5 +1,5 @@
 import { Accordion, PageContent, WorldMap, Card } from "grommet";
-import AppHeader from "../../Components/AppHeader";
+import AppHeader from "../../Components/Header/AppHeader";
 import styled from "styled-components";
 import { MutableRefObject, useRef, useState } from "react";
 import AppPage from "../../Components/AppPage";

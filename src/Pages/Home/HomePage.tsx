@@ -1,5 +1,5 @@
 import { Clock, PageContent, Text } from "grommet";
-import AppHeader from "../../Components/AppHeader";
+import AppHeader from "../../Components/Header/AppHeader";
 import AppPage from "../../Components/AppPage";
 
 function HomePage(): JSX.Element {

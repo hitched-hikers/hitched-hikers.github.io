@@ -7,7 +7,7 @@ interface AppPageProps {
 
 function AppPage(props: AppPageProps): JSX.Element {
   return (
-    <FullScreenPage background="pageBackground">
+    <FullScreenPage id="outer" background="pageBackground">
       {props.children}
     </FullScreenPage>
   );

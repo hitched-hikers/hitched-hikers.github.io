@@ -11,7 +11,7 @@ import {
   TableCell,
   TableRow,
 } from "grommet";
-import AppHeader from "./AppHeader";
+import AppHeader from "./Header/AppHeader";
 import AppPage from "./AppPage";
 import styled from "styled-components";
 import { imageUrlFormatter } from "../Utils/images";
@@ -23,7 +23,7 @@ function HikeBlog(props: HikeBlogProps): JSX.Element {
     <AppPage>
       <AppHeader title="" />
 
-      <StyledPageContent alignContent="center">
+      <StyledPageContent id="inner" alignContent="center">
         <PageHeader
           title={"Algonquin Peak"}
           subtitle={

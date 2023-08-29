@@ -1,4 +1,4 @@
-import HikeBlog from "../../../Components/HikeBlog";
+import HikeBlog from "../../../../Components/HikeBlog";
 
 function AlgonquinPeak(): JSX.Element {
   return <HikeBlog />;
