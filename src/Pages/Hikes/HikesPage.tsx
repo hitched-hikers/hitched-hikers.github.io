@@ -1,5 +1,4 @@
 import { Accordion, PageContent, WorldMap, Card } from "grommet";
-import AppHeader from "../../Components/Header/AppHeader";
 import styled from "styled-components";
 import { MutableRefObject, useRef, useState } from "react";
 import AppPage from "../../Components/AppPage";
@@ -136,7 +135,6 @@ function HikesPage(): JSX.Element {
 
   return (
     <AppPage>
-      <AppHeader title={"Hikes"} />
       <StyledPageContent align="center">
         <StyledMap
           places={[...canadaMapRegions, ...italyMapRegions, ...usaMapRegions]}
