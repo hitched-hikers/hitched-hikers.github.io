@@ -3,7 +3,7 @@ import { stack as Menu } from "react-burger-menu";
 import { darkModeAtom } from "../Utils/Theme";
 import { Box, Button, Text } from "grommet";
 import { Home, Moon, Sun, TreeOption } from "grommet-icons";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import BurgerMenuItem from "./BurgerMenuItem";
 
 function BurgerMenu(): JSX.Element {
