@@ -19,7 +19,7 @@ function AppPage(props: AppPageProps): JSX.Element {
 
 const FullScreenPage = styled(Page)`
   min-height: 100vh;
-  padding-top: 48px;
+  padding-top: 72px;
   padding-bottom: 24px;
 `;
 

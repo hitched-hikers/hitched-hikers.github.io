@@ -4,7 +4,7 @@ import HomePage from "./Pages/Home/HomePage";
 import { useAtom } from "jotai";
 import { Grommet } from "grommet";
 import HikesPage from "./Pages/Hikes/HikesPage";
-import AlgonquinPeak from "./Pages/Hikes/HikeBlogs/AlgonquinPeak/AlgonquinPeak";
+import AlgonquinPeak from "./Pages/BlogPages/AlgonquinPeak/AlgonquinPeak";
 
 function App(): JSX.Element {
   const [darkMode] = useAtom(darkModeAtom);
