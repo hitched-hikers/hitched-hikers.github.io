@@ -112,6 +112,7 @@ const HeaderContainer = styled.div`
 
 const CoverImage = styled(Image)`
   max-height: 400px;
+  border-radius: 8px;
 `;
 
 const TitleContainer = styled.div`

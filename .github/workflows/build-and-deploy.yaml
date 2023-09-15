@@ -22,7 +22,7 @@ jobs:
           node-version: 18
       - run: npm install -g yarn
       - run: yarn install
-      - run: 'echo "$MAPBOX_ACCESS_TOKEN" > src/Utils/mapboxAccessToken.txt'
+      - run: 'echo "$MAPBOX_ACCESS_TOKEN" > ${{ github.workspace }}/src/Utils/mapboxAccessToken.txt'
         shell: bash
         env:
           MAPBOX_ACCESS_TOKEN: ${{secrets.MAPBOX_ACCESS_TOKEN}}
