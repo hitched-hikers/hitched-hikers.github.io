@@ -13,55 +13,41 @@ import {
   squamishHikes,
 } from "./hikes";
 import MapMarker from "./Map/MapMarker";
-import { useState } from "react";
-import mapboxAccesstokenPath from "../../Utils/mapboxAccessToken.txt";
 
 function HikesPage(): JSX.Element {
-  const [mapboxAccessToken, setMapboxAccessToken] = useState<
-    undefined | string
-  >(undefined);
-
-  fetch(mapboxAccesstokenPath)
-    .then((response) => {
-      return response.text();
-    })
-    .then((text) => {
-      setMapboxAccessToken(text);
-    });
-
   return (
     <AppPage>
       <StyledPageContent align="center">
         <MapContainer>
-          {mapboxAccessToken && (
-            <Map
-              initialViewState={{
-                longitude: 0,
-                latitude: 40,
-                zoom: 0.5,
-              }}
-              terrain={{ source: "mapbox-dem", exaggeration: 1.5 }}
-              mapboxAccessToken={mapboxAccessToken}
-              style={{ width: "100%", height: 480 }}
-              mapStyle="mapbox://styles/adrian-patterson/clmchxwrw039y01qbedqzhd9l"
-            >
-              <Source
-                id="mapbox-dem"
-                type="raster-dem"
-                url="mapbox://mapbox.mapbox-terrain-dem-v1"
-                tileSize={512}
-                maxzoom={14}
+          <Map
+            initialViewState={{
+              longitude: 0,
+              latitude: 40,
+              zoom: 0.5,
+            }}
+            terrain={{ source: "mapbox-dem", exaggeration: 1.5 }}
+            mapboxAccessToken={
+              "pk.eyJ1IjoiYWRyaWFuLXBhdHRlcnNvbiIsImEiOiJjbG1qdWx5ZGYwNXg0MmxxaTh2YXZxZzBtIn0.mDcSYptguXymv6LTfToovg"
+            }
+            style={{ width: "100%", height: 480 }}
+            mapStyle="mapbox://styles/adrian-patterson/clmchxwrw039y01qbedqzhd9l"
+          >
+            <Source
+              id="mapbox-dem"
+              type="raster-dem"
+              url="mapbox://mapbox.mapbox-terrain-dem-v1"
+              tileSize={512}
+              maxzoom={14}
+            />
+            {allHikes.map((hike) => (
+              <MapMarker
+                blogPath={hike.blogPath}
+                markerName={hike.name}
+                latitude={hike.latitude}
+                longitude={hike.longitude}
               />
-              {allHikes.map((hike) => (
-                <MapMarker
-                  blogPath={hike.blogPath}
-                  markerName={hike.name}
-                  latitude={hike.latitude}
-                  longitude={hike.longitude}
-                />
-              ))}
-            </Map>
-          )}
+            ))}
+          </Map>
         </MapContainer>
 
         <LocationCard background={{ dark: "dark-2", light: "light-2" }}>
