@@ -37,7 +37,7 @@ function ThreeDimensionalMap(): JSX.Element {
         }}
         maxPitch={85}
         terrain={{ source: "mapbox-dem", exaggeration: 1.5 }}
-        mapboxAccessToken="pk.eyJ1IjoiYWRyaWFuLXBhdHRlcnNvbiIsImEiOiJjbG1qdWx5ZGYwNXg0MmxxaTh2YXZxZzBtIn0.mDcSYptguXymv6LTfToovg"
+        mapboxAccessToken="pk.eyJ1IjoiYWRyaWFuLXBhdHRlcnNvbiIsImEiOiJjbG1sMW45OWIwNnJlMmxwbjFhOWQwNXFiIn0.xnUy4HAJnRiU9qd7oQl0PA"
         style={{ width: "100%", height: "100vh" }}
         mapStyle={"mapbox://styles/mapbox/satellite-v9"}
       >
