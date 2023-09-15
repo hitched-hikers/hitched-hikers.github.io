@@ -1,56 +1,56 @@
 {
-    "name": "hitched-hikers-blog",
-    "homepage": "https://hitched-hikers.github.io",
-    "version": "0.1.0",
-    "private": true,
-    "dependencies": {
-        "@babel/core": "^7.0.0-0",
-        "@babel/plugin-syntax-flow": "^7.14.5",
-        "@babel/plugin-transform-react-jsx": "^7.14.9",
-        "grommet": "^2.33.1",
-        "grommet-icons": "^4.11.0",
-        "jotai": "^2.4.0",
-        "mapbox-gl": "^2.15.0",
-        "react": "^18.2.0",
-        "react-burger-menu": "^3.0.9",
-        "react-dom": "^18.2.0",
-        "react-is": "^16.8.0",
-        "react-map-gl": "^7.1.5",
-        "react-router-dom": "^6.15.0",
-        "react-scripts": "5.0.1",
-        "styled-components": "^5.1.26",
-        "typescript": "^5.1.6"
-    },
-    "devDependencies": {
-        "@types/mapbox-gl": "^2.7.13",
-        "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
-        "@types/react": "^18.2.0",
-        "@types/react-burger-menu": "^2.8.3",
-        "@types/react-dom": "^18.2.0",
-        "@types/styled-components": "^5.1.26"
-    },
-    "scripts": {
-        "start": "react-scripts start",
-        "build": "react-scripts build",
-        "test": "react-scripts test",
-        "eject": "react-scripts eject"
-    },
-    "eslintConfig": {
-        "extends": [
-            "react-app",
-            "react-app/jest"
-        ]
-    },
-    "browserslist": {
-        "production": [
-            ">0.2%",
-            "not dead",
-            "not op_mini all"
-        ],
-        "development": [
-            "last 1 chrome version",
-            "last 1 firefox version",
-            "last 1 safari version"
-        ]
-    }
+  "name": "hitched-hikers-blog",
+  "homepage": "https://hitched-hikers.github.io",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@babel/core": "^7.22.19",
+    "@babel/plugin-syntax-flow": "^7.14.5",
+    "@babel/plugin-transform-react-jsx": "^7.14.9",
+    "grommet": "^2.33.1",
+    "grommet-icons": "^4.11.0",
+    "jotai": "^2.4.0",
+    "mapbox-gl": "^2.15.0",
+    "react": "^18.2.0",
+    "react-burger-menu": "^3.0.9",
+    "react-dom": "^18.2.0",
+    "react-is": "^16.8.0",
+    "react-map-gl": "^7.1.5",
+    "react-router-dom": "^6.15.0",
+    "react-scripts": "5.0.1",
+    "styled-components": "^5.1.26",
+    "typescript": "^5.1.6"
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "@types/mapbox-gl": "^2.7.13",
+    "@types/react": "^18.2.0",
+    "@types/react-burger-menu": "^2.8.3",
+    "@types/react-dom": "^18.2.0",
+    "@types/styled-components": "^5.1.26"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build-app": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
 }
