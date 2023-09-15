@@ -5,6 +5,7 @@ import { useAtom } from "jotai";
 import { Grommet } from "grommet";
 import HikesPage from "./Pages/Hikes/HikesPage";
 import AlgonquinPeak from "./Pages/BlogPages/AlgonquinPeak/AlgonquinPeak";
+import ThreeDimensionalMap from "./Pages/3dMap/ThreeDimensionalMap";
 
 function App(): JSX.Element {
   const [darkMode] = useAtom(darkModeAtom);
@@ -15,6 +16,7 @@ function App(): JSX.Element {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/hikes" element={<HikesPage />} />
+          <Route path="/3d" element={<ThreeDimensionalMap />} />
           <Route path="/hikes/algonquin-peak" element={<AlgonquinPeak />} />
         </Routes>
       </HashRouter>

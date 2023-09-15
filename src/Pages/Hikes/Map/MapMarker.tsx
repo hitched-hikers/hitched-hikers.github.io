@@ -1,13 +1,15 @@
 import { Marker } from "react-map-gl";
 import MapPin from "./MapPin.png";
 import styled from "styled-components";
-import { useCallback, useMemo, useRef } from "react";
+import { useCallback, useEffect, useMemo, useRef } from "react";
 import mapboxgl from "mapbox-gl";
 import "./MapMarker.css";
 import { useNavigate } from "react-router-dom";
 
 interface MapMarkerProps {
-  blogPath: string;
+  blogPath?: string;
+  closeButton?: boolean;
+  fixed?: boolean;
   markerName: string;
   latitude: number;
   longitude: number;
@@ -20,11 +22,17 @@ function MapMarker(props: MapMarkerProps): JSX.Element {
   const popup = useMemo(() => {
     return new mapboxgl.Popup({
       anchor: "bottom",
-      closeButton: false,
+      closeButton: props.closeButton,
       offset: 16,
       className: "marker-text",
     }).setText(props.markerName);
-  }, [props.markerName]);
+  }, [props.closeButton, props.markerName]);
+
+  useEffect(() => {
+    if (props.fixed) {
+      markerRef.current?.togglePopup();
+    }
+  }, [props.fixed]);
 
   const togglePopup = useCallback(() => {
     markerRef.current?.togglePopup();
@@ -34,14 +42,14 @@ function MapMarker(props: MapMarkerProps): JSX.Element {
     <>
       <Marker
         ref={markerRef}
-        onClick={() => navigate(props.blogPath)}
+        onClick={() => props.blogPath && navigate(props.blogPath)}
         longitude={props.longitude}
         latitude={props.latitude}
         popup={popup}
       >
         <StyledMapPin
-          onMouseEnter={togglePopup}
-          onMouseLeave={togglePopup}
+          onMouseEnter={() => !props.fixed && togglePopup()}
+          onMouseLeave={() => !props.fixed && togglePopup()}
           alt="Map Pin"
           src={MapPin}
         />

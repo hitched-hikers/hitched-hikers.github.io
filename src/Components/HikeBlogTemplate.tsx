@@ -27,6 +27,8 @@ interface HikeBlogProps {
   galleryImageIds: string[];
   latitude: number;
   longitude: number;
+  distance: number;
+  elevationGain: number;
   children: ReactNode;
 }
 
@@ -66,11 +68,11 @@ function HikeBlogTemplate(props: HikeBlogProps): JSX.Element {
                 <TableCell scope="row">
                   <strong>Mileage</strong>
                 </TableCell>
-                <TableCell>16.32 mi</TableCell>
+                <TableCell>{props.distance}</TableCell>
               </TableRow>
               <TableRow>
                 <TableCell scope="row">
-                  <strong>Elevation Gain</strong>
+                  <strong>{props.elevationGain}</strong>
                 </TableCell>
                 <TableCell>3,632 ft</TableCell>
               </TableRow>
@@ -79,7 +81,9 @@ function HikeBlogTemplate(props: HikeBlogProps): JSX.Element {
         </StatsCard>
 
         <Link
-          to={`/3d?latitude=${props.latitude}&longitude=${props.longitude}`}
+          to={`/3d?name=${props.title}&latitude=${String(
+            props.latitude
+          )}&longitude=${String(props.longitude)}`}
         >
           <ThreeDimensionalMapButton primary label="See Mountain in 3D" />
         </Link>
@@ -150,7 +154,9 @@ const ThreeDimensionalMapButton = styled(Button)`
 `;
 
 const MarkdownContainer = styled.div`
-  max-width: 100%;
+  p {
+    max-width: 100%;
+  }
 `;
 
 export default HikeBlogTemplate;

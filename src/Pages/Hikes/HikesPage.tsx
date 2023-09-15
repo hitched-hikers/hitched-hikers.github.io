@@ -21,16 +21,16 @@ function HikesPage(): JSX.Element {
         <MapContainer>
           <Map
             initialViewState={{
-              longitude: 0,
+              longitude: -100,
               latitude: 40,
-              zoom: 0.5,
+              zoom: 1,
             }}
             terrain={{ source: "mapbox-dem", exaggeration: 1.5 }}
             mapboxAccessToken={
               "pk.eyJ1IjoiYWRyaWFuLXBhdHRlcnNvbiIsImEiOiJjbG1qdWx5ZGYwNXg0MmxxaTh2YXZxZzBtIn0.mDcSYptguXymv6LTfToovg"
             }
             style={{ width: "100%", height: 480 }}
-            mapStyle="mapbox://styles/adrian-patterson/clmchxwrw039y01qbedqzhd9l"
+            mapStyle="mapbox://styles/mapbox/outdoors-v12"
           >
             <Source
               id="mapbox-dem"

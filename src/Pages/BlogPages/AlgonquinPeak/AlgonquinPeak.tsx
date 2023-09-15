@@ -45,11 +45,13 @@ function AlgonquinPeak(): JSX.Element {
         "1ITAfDzga7ujGGUL5D4tGMV-by8aT2tQ4",
         "1eaJxC2abW2XT3GNjUugENRpaDjRhnpWo",
       ]}
-      latitude={-73.9865}
-      longitude={44.1613}
+      latitude={44.1437}
+      longitude={-73.9865}
+      distance={16.32}
+      elevationGain={3632}
     >
       <>
-        <Markdown>{blogA}</Markdown>
+        <Markdown style={{ maxWidth: "100%" }}>{blogA}</Markdown>
         <BlogImage src="https://drive.google.com/thumbnail?id=1ST7TQ_i3EaHpdASGsvAPSKO6wdh_OndW&sz=w1024" />
         <Markdown>{blogB}</Markdown>
       </>

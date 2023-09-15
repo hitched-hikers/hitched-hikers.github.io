@@ -1,23 +1,44 @@
 import Map, { Source, Layer } from "react-map-gl";
-import styled from "styled-components";
 
 import type { SkyLayer } from "react-map-gl";
+import AppPage from "../../Components/AppPage";
+import { useSearchParams } from "react-router-dom";
+import MapMarker from "../Hikes/Map/MapMarker";
 
 function ThreeDimensionalMap(): JSX.Element {
+  const [searchParams] = useSearchParams();
+  const longitudeQueryParam = searchParams.get("longitude");
+  const latitudeQueryParam = searchParams.get("latitude");
+  const nameQueryParam = searchParams.get("name");
+
+  let longitude = 0;
+  let latitude = 0;
+  let name = "";
+
+  if (
+    longitudeQueryParam != null &&
+    latitudeQueryParam != null &&
+    nameQueryParam != null
+  ) {
+    longitude = Number(longitudeQueryParam);
+    latitude = Number(latitudeQueryParam);
+    name = nameQueryParam;
+  }
+
   return (
-    <MapContainer>
+    <AppPage>
       <Map
         initialViewState={{
-          longitude: 0,
-          latitude: 40,
-          zoom: 0.3,
+          longitude: longitude,
+          latitude: latitude,
+          zoom: 14,
           bearing: 80,
           pitch: 80,
         }}
         maxPitch={85}
         terrain={{ source: "mapbox-dem", exaggeration: 1.5 }}
         mapboxAccessToken="pk.eyJ1IjoiYWRyaWFuLXBhdHRlcnNvbiIsImEiOiJjbG1qdWx5ZGYwNXg0MmxxaTh2YXZxZzBtIn0.mDcSYptguXymv6LTfToovg"
-        style={{ width: "100%", height: 400 }}
+        style={{ width: "100%", height: "100vh" }}
         mapStyle={"mapbox://styles/mapbox/satellite-v9"}
       >
         <Source
@@ -27,9 +48,16 @@ function ThreeDimensionalMap(): JSX.Element {
           tileSize={512}
           maxzoom={14}
         />
+        <MapMarker
+          fixed
+          closeButton
+          markerName={name}
+          latitude={latitude}
+          longitude={longitude}
+        />
         <Layer {...skyLayer} />
       </Map>
-    </MapContainer>
+    </AppPage>
   );
 }
 const skyLayer: SkyLayer = {
@@ -41,10 +69,5 @@ const skyLayer: SkyLayer = {
     "sky-atmosphere-sun-intensity": 15,
   },
 };
-
-const MapContainer = styled.div`
-  padding-top: 24px;
-  width: 100%;
-`;
 
 export default ThreeDimensionalMap;
