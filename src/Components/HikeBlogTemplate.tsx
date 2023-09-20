@@ -41,15 +41,13 @@ function HikeBlogTemplate(props: HikeBlogProps): JSX.Element {
   return (
     <AppPage>
       <StyledPageContent alignContent="center">
-        {isCoverImageLoaded ? (
-          <CoverImage
-            onLoadStart={() => setIsCoverImageLoaded(true)}
-            fit="cover"
-            src={imageUrlFormatter(props.coverPhotoId)}
-          />
-        ) : (
-          <CoverImageSkeleton />
-        )}
+        {!isCoverImageLoaded && <CoverImageSkeleton />}
+        <CoverImage
+          onLoad={() => setIsCoverImageLoaded(true)}
+          fit="cover"
+          src={imageUrlFormatter(props.coverPhotoId)}
+          hidden={!isCoverImageLoaded}
+        />
         <HeaderContainer>
           <TitleContainer>
             <PageHeader
@@ -67,17 +65,14 @@ function HikeBlogTemplate(props: HikeBlogProps): JSX.Element {
         <SummaryText>{props.summary}</SummaryText>
 
         <Heading level={2}>The Trail</Heading>
-        {isAllTrailsIframeLoaded ? (
-          <AllTrailsIFrame
-            onLoad={() => setIsAlltrailsIframeLoaded(true)}
-            className="alltrails"
-            src={props.allTrailsIframeSource}
-            title={props.title}
-          />
-        ) : (
-          <AllTrailsSkeleton />
-        )}
-
+        {!isAllTrailsIframeLoaded && <AllTrailsSkeleton />}
+        <AllTrailsIFrame
+          onLoad={() => setIsAlltrailsIframeLoaded(true)}
+          className="alltrails"
+          src={props.allTrailsIframeSource}
+          title={props.title}
+          hidden={!isAllTrailsIframeLoaded}
+        />
         <StatsCard
           alignSelf="center"
           background={{ dark: "dark-2", light: "light-3" }}
@@ -109,23 +104,27 @@ function HikeBlogTemplate(props: HikeBlogProps): JSX.Element {
         </Link>
 
         <Heading level={2}>Gallery</Heading>
-        {loadedImages !== props.galleryImageIds.length ? (
-          <StyledCarousel controls="arrows" wrap width="640px" play={5000} fill>
-            {props.galleryImageIds.map((imageId) => {
-              return (
-                <CarouselImage
-                  onLoad={() =>
-                    setLoadedImages((loadedImages) => loadedImages + 1)
-                  }
-                  fit="cover"
-                  src={imageUrlFormatter(imageId)}
-                />
-              );
-            })}
-          </StyledCarousel>
-        ) : (
-          <CarouselSkeleton />
-        )}
+        {loadedImages !== props.galleryImageIds.length && <CarouselSkeleton />}
+        <StyledCarousel
+          hidden={loadedImages !== props.galleryImageIds.length}
+          controls="arrows"
+          wrap
+          width="640px"
+          play={5000}
+          fill
+        >
+          {props.galleryImageIds.map((imageId) => {
+            return (
+              <CarouselImage
+                onLoad={() =>
+                  setLoadedImages((loadedImages) => loadedImages + 1)
+                }
+                fit="cover"
+                src={imageUrlFormatter(imageId)}
+              />
+            );
+          })}
+        </StyledCarousel>
 
         <Heading level={2}>The Hike</Heading>
         <MarkdownContainer>{props.children}</MarkdownContainer>
