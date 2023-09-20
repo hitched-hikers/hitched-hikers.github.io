@@ -31,7 +31,7 @@ function ThreeDimensionalMap(): JSX.Element {
         initialViewState={{
           longitude: longitude,
           latitude: latitude,
-          zoom: 14,
+          zoom: 13,
           bearing: 80,
           pitch: 80,
         }}
