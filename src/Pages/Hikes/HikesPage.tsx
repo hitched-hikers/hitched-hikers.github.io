@@ -107,7 +107,7 @@ const MapContainer = styled.div`
 
 const StyledPageContent = styled(PageContent)`
   width: 100%;
-  max-width: 640px;
+  max-width: 1024px;
 `;
 
 const LocationCard = styled(Card)`

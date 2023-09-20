@@ -11,19 +11,20 @@ import {
   TableCell,
   TableRow,
   Button,
+  Skeleton,
 } from "grommet";
 import AppPage from "./AppPage";
 import styled from "styled-components";
 import { imageUrlFormatter } from "../Utils/images";
 import { Link } from "react-router-dom";
-import { ReactNode } from "react";
+import { ReactNode, useState } from "react";
 
 interface HikeBlogProps {
   coverPhotoId: string;
   title: string;
   date: Date;
   summary: string;
-  allTrailsHtml: string;
+  allTrailsIframeSource: string;
   galleryImageIds: string[];
   latitude: number;
   longitude: number;
@@ -33,10 +34,19 @@ interface HikeBlogProps {
 }
 
 function HikeBlogTemplate(props: HikeBlogProps): JSX.Element {
+  const [loadedImages, setLoadedImages] = useState(0);
+  const [isAllTrailsIframeLoaded, setIsAlltrailsIframeLoaded] = useState(false);
+  const [isCoverImageLoaded, setIsCoverImageLoaded] = useState(false);
+
   return (
     <AppPage>
       <StyledPageContent alignContent="center">
-        <CoverImage fit="cover" src={imageUrlFormatter(props.coverPhotoId)} />
+        {!isCoverImageLoaded && <CoverImageSkeleton />}
+        <CoverImage
+          onLoad={() => setIsCoverImageLoaded(true)}
+          fit="cover"
+          src={imageUrlFormatter(props.coverPhotoId)}
+        />
         <HeaderContainer>
           <TitleContainer>
             <PageHeader
@@ -54,9 +64,12 @@ function HikeBlogTemplate(props: HikeBlogProps): JSX.Element {
         <SummaryText>{props.summary}</SummaryText>
 
         <Heading level={2}>The Trail</Heading>
-        <div
-          className="content"
-          dangerouslySetInnerHTML={{ __html: props.allTrailsHtml }}
+        {!isAllTrailsIframeLoaded && <AllTrailsSkeleton />}
+        <AllTrailsIFrame
+          onLoad={() => setIsAlltrailsIframeLoaded(true)}
+          className="alltrails"
+          src={props.allTrailsIframeSource}
+          title={props.title}
         />
         <StatsCard
           alignSelf="center"
@@ -68,13 +81,13 @@ function HikeBlogTemplate(props: HikeBlogProps): JSX.Element {
                 <TableCell scope="row">
                   <strong>Mileage</strong>
                 </TableCell>
-                <TableCell>{props.distance}</TableCell>
+                <TableCell>{props.distance} mi</TableCell>
               </TableRow>
               <TableRow>
                 <TableCell scope="row">
-                  <strong>{props.elevationGain}</strong>
+                  <strong>Elevation Gain</strong>
                 </TableCell>
-                <TableCell>3,632 ft</TableCell>
+                <TableCell>{props.elevationGain} ft</TableCell>
               </TableRow>
             </TableBody>
           </Table>
@@ -89,10 +102,17 @@ function HikeBlogTemplate(props: HikeBlogProps): JSX.Element {
         </Link>
 
         <Heading level={2}>Gallery</Heading>
+        {loadedImages !== props.galleryImageIds.length && <CarouselSkeleton />}
         <StyledCarousel controls="arrows" wrap width="640px" play={5000} fill>
           {props.galleryImageIds.map((imageId) => {
             return (
-              <CarouselImage fit="cover" src={imageUrlFormatter(imageId)} />
+              <CarouselImage
+                onLoad={() =>
+                  setLoadedImages((loadedImages) => loadedImages + 1)
+                }
+                fit="cover"
+                src={imageUrlFormatter(imageId)}
+              />
             );
           })}
         </StyledCarousel>
@@ -119,6 +139,12 @@ const CoverImage = styled(Image)`
   border-radius: 8px;
 `;
 
+const CoverImageSkeleton = styled(Skeleton)`
+  height: 400px;
+  width: 100%;
+  border-radius: 8px;
+`;
+
 const TitleContainer = styled.div`
   position: absolute;
   bottom: 8px;
@@ -134,6 +160,19 @@ const StatsCard = styled(Card)`
   box-shadow: none;
   padding: 4px 0;
   margin: 8px 0;
+  border-radius: 8px;
+`;
+
+const AllTrailsIFrame = styled.iframe`
+  width: 100%;
+  border-radius: 8px;
+  height: 400px;
+`;
+
+const AllTrailsSkeleton = styled(Skeleton)`
+  width: 100%;
+  border-radius: 8px;
+  height: 400px;
 `;
 
 const CarouselImage = styled(Image)`
@@ -146,6 +185,13 @@ const StyledCarousel = styled(Carousel)`
   max-width: 100%;
   width: auto;
   height: auto;
+  border-radius: 8px;
+`;
+
+const CarouselSkeleton = styled(Skeleton)`
+  width: 100;
+  border-radius: 8px;
+  height: 480px;
 `;
 
 const ThreeDimensionalMapButton = styled(Button)`

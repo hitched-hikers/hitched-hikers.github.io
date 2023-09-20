@@ -84,7 +84,7 @@ export const adirondackHikes: Hike[] = [
   {
     name: "Algonquin Peak",
     blogPath: BlogPath.AlgonquinPeak,
-    latitude: 44.1613,
+    latitude: 44.1437,
     longitude: -73.9865,
   },
   {

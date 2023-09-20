@@ -33,7 +33,7 @@ function AlgonquinPeak(): JSX.Element {
       summary={
         "Algonquin peak was a brutal overnight hike with the gruesome twosome. We got our assess kicked but it was still a beautiful one and well worth the grind."
       }
-      allTrailsHtml='<iframe class="alltrails" src="https://www.alltrails.com/widget/recording/evening-backpack-trip-at-wright-peak-alqonquin-peak-iroquois-peak-and-avalanche-lake-loop-8d8f733?scrollZoom=false&u=i&sh=x01s6z" width="100%" height="400" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" title="AllTrails: Trail Guides and Maps for Hiking, Camping, and Running"></iframe>'
+      allTrailsIframeSource="https://www.alltrails.com/widget/recording/evening-backpack-trip-at-wright-peak-alqonquin-peak-iroquois-peak-and-avalanche-lake-loop-8d8f733?scrollZoom=false&u=i&sh=x01s6z"
       galleryImageIds={[
         "1NOji8GDyE7RMqyfwhu-Nys3E9HWJ72Bi",
         "14hi3ICHlfO_WH_nTrcFb8dYB0rcB6uc_",
