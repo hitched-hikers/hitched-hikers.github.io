@@ -5,7 +5,7 @@ import { useAtom } from "jotai";
 import { Grommet } from "grommet";
 import HikesPage from "./Pages/Hikes/HikesPage";
 import AlgonquinPeak from "./Pages/BlogPages/AlgonquinPeak/AlgonquinPeak";
-import ThreeDimensionalMap from "./Pages/3dMap/ThreeDimensionalMap";
+import ThreeDimensionalMap from "./Pages/ThreeDimensionalMap/ThreeDimensionalMap";
 
 function App(): JSX.Element {
   const [darkMode] = useAtom(darkModeAtom);

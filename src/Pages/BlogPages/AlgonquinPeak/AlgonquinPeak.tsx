@@ -1,28 +1,15 @@
 import { Markdown } from "grommet";
 import HikeBlogTemplate from "../../../Components/HikeBlogTemplate";
-import BlogA from "./BlogA.md";
-import BlogB from "./BlogB.md";
+import Blog from "./Blog.md";
 import { useState } from "react";
-import BlogImage from "../BlogImage";
 
 function AlgonquinPeak(): JSX.Element {
-  const [blogA, setBlogA] = useState("");
-  const [blogB, setBlogB] = useState("");
+  const [blog, setBlog] = useState("");
 
-  fetch(BlogA)
-    .then((response) => {
-      return response.text();
-    })
+  fetch(Blog)
+    .then((response) => response.text())
     .then((text) => {
-      setBlogA(text);
-    });
-
-  fetch(BlogB)
-    .then((response) => {
-      return response.text();
-    })
-    .then((text) => {
-      setBlogB(text);
+      setBlog(text);
     });
 
   return (
@@ -50,11 +37,7 @@ function AlgonquinPeak(): JSX.Element {
       distance={16.32}
       elevationGain={3632}
     >
-      <>
-        <Markdown style={{ maxWidth: "100%" }}>{blogA}</Markdown>
-        <BlogImage src="https://drive.google.com/thumbnail?id=1ST7TQ_i3EaHpdASGsvAPSKO6wdh_OndW&sz=w1024" />
-        <Markdown>{blogB}</Markdown>
-      </>
+      <Markdown style={{ maxWidth: "100%" }}>{blog}</Markdown>
     </HikeBlogTemplate>
   );
 }

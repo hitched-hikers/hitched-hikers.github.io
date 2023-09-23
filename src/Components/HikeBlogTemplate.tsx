@@ -212,6 +212,12 @@ const MarkdownContainer = styled.div`
   p {
     max-width: 100%;
   }
+  img {
+    max-width: 100%;
+    width: auto;
+    height: auto;
+    border-radius: 8px;
+  }
 `;
 
 export default HikeBlogTemplate;
