@@ -1,6 +1,6 @@
 import { Accordion, AccordionPanel, Box, Text } from "grommet";
 import styled from "styled-components";
-import { Hike } from "./hikes";
+import { Hike } from "./Models/hikes";
 import { Link } from "react-router-dom";
 
 interface CountryAccordionProps {

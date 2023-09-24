@@ -1,10 +1,15 @@
-import { Markdown } from "grommet";
 import HikeBlogTemplate from "../../../Components/HikeBlogTemplate";
 import Blog from "./Blog.md";
 import { useState } from "react";
+import { adirondackHikes } from "../../Hikes/Models/hikes";
+import { HikeName } from "../../../Enums/hikeName";
 
 function AlgonquinPeak(): JSX.Element {
   const [blog, setBlog] = useState("");
+
+  const hike = adirondackHikes.find(
+    (hike) => hike.name === HikeName.AlgonquinPeak
+  )!;
 
   fetch(Blog)
     .then((response) => response.text())
@@ -15,7 +20,7 @@ function AlgonquinPeak(): JSX.Element {
   return (
     <HikeBlogTemplate
       coverPhotoId={"13iVrbQLE46PI4i2thgn1Uj9KkmmmjUPq"}
-      title={"Algonquin Peak"}
+      title={hike?.name}
       date={new Date(2023, 8, 19)}
       summary={
         "Algonquin peak was a brutal overnight hike with the gruesome twosome. We got our assess kicked but it was still a beautiful one and well worth the grind."
@@ -32,13 +37,12 @@ function AlgonquinPeak(): JSX.Element {
         "1ITAfDzga7ujGGUL5D4tGMV-by8aT2tQ4",
         "1eaJxC2abW2XT3GNjUugENRpaDjRhnpWo",
       ]}
-      latitude={44.1437}
-      longitude={-73.9865}
+      latitude={hike.latitude}
+      longitude={hike.longitude}
       distance={16.32}
       elevationGain={3632}
-    >
-      <Markdown style={{ maxWidth: "100%" }}>{blog}</Markdown>
-    </HikeBlogTemplate>
+      blog={blog}
+    />
   );
 }
 

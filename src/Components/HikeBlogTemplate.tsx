@@ -12,12 +12,13 @@ import {
   TableRow,
   Button,
   Skeleton,
+  Markdown,
 } from "grommet";
 import AppPage from "./AppPage";
 import styled from "styled-components";
 import { imageUrlFormatter } from "../Utils/images";
 import { Link } from "react-router-dom";
-import { ReactNode, useState } from "react";
+import { useState } from "react";
 
 interface HikeBlogProps {
   coverPhotoId: string;
@@ -30,7 +31,7 @@ interface HikeBlogProps {
   longitude: number;
   distance: number;
   elevationGain: number;
-  children: ReactNode;
+  blog: string;
 }
 
 function HikeBlogTemplate(props: HikeBlogProps): JSX.Element {
@@ -127,7 +128,9 @@ function HikeBlogTemplate(props: HikeBlogProps): JSX.Element {
         </StyledCarousel>
 
         <Heading level={2}>The Hike</Heading>
-        <MarkdownContainer>{props.children}</MarkdownContainer>
+        <MarkdownContainer>
+          <Markdown>{props.blog}</Markdown>
+        </MarkdownContainer>
       </StyledPageContent>
     </AppPage>
   );

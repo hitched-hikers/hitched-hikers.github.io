@@ -12,7 +12,7 @@ import {
   gaspeHikes,
   greenMountainHikes,
   squamishHikes,
-} from "./hikes";
+} from "./Models/hikes";
 import MapMarker from "./Map/MapMarker";
 import { useState } from "react";
 
