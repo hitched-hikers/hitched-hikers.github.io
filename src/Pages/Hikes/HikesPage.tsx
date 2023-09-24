@@ -119,7 +119,6 @@ function HikesPage(): JSX.Element {
 }
 
 const MapContainer = styled.div`
-  padding-top: 24px;
   width: 100%;
 `;
 
