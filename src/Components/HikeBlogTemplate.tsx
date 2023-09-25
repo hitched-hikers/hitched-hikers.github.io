@@ -19,18 +19,14 @@ import styled from "styled-components";
 import { imageUrlFormatter } from "../Utils/images";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import { Hike } from "../Pages/Hikes/Models/hikes";
 
 interface HikeBlogProps {
+  hike: Hike;
   coverPhotoId: string;
-  title: string;
-  date: Date;
   summary: string;
   allTrailsIframeSource: string;
   galleryImageIds: string[];
-  latitude: number;
-  longitude: number;
-  distance: number;
-  elevationGain: number;
   blog: string;
 }
 
@@ -52,8 +48,8 @@ function HikeBlogTemplate(props: HikeBlogProps): JSX.Element {
         <HeaderContainer>
           <TitleContainer>
             <PageHeader
-              title={props.title}
-              subtitle={props.date.toLocaleDateString("en-US", {
+              title={props.hike.name}
+              subtitle={props.hike.date.toLocaleDateString("en-US", {
                 weekday: "long",
                 year: "numeric",
                 month: "long",
@@ -71,7 +67,7 @@ function HikeBlogTemplate(props: HikeBlogProps): JSX.Element {
           onLoad={() => setIsAlltrailsIframeLoaded(true)}
           className="alltrails"
           src={props.allTrailsIframeSource}
-          title={props.title}
+          title={props.hike.name}
           hidden={!isAllTrailsIframeLoaded}
         />
         <StatsCard
@@ -84,22 +80,22 @@ function HikeBlogTemplate(props: HikeBlogProps): JSX.Element {
                 <TableCell scope="row">
                   <strong>Mileage</strong>
                 </TableCell>
-                <TableCell>{props.distance} mi</TableCell>
+                <TableCell>{props.hike.distance} mi</TableCell>
               </TableRow>
               <TableRow>
                 <TableCell scope="row">
                   <strong>Elevation Gain</strong>
                 </TableCell>
-                <TableCell>{props.elevationGain} ft</TableCell>
+                <TableCell>{props.hike.elevationGain} ft</TableCell>
               </TableRow>
             </TableBody>
           </Table>
         </StatsCard>
 
         <Link
-          to={`/3d?name=${props.title}&latitude=${String(
-            props.latitude
-          )}&longitude=${String(props.longitude)}`}
+          to={`/3d?name=${props.hike.name}&latitude=${String(
+            props.hike.latitude
+          )}&longitude=${String(props.hike.longitude)}`}
         >
           <ThreeDimensionalMapButton primary label="See Mountain in 3D" />
         </Link>

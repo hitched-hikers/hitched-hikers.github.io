@@ -26,8 +26,13 @@ function HikesPage(): JSX.Element {
     .then((response) => response.text())
     .then((text) => setMapboxAccessToken(text));
 
-  const handleMapZoomEnd = (event: ViewStateChangeEvent) =>
-    event.viewState.zoom > 8 ? setIsMarkerFixed(true) : setIsMarkerFixed(false);
+  const handleMapZoomEnd = (event: ViewStateChangeEvent) => {
+    if (event.viewState.zoom > 8 && isMarkerFixed === false) {
+      setIsMarkerFixed(true);
+    } else if (event.viewState.zoom <= 8 && isMarkerFixed === true) {
+      setIsMarkerFixed(false);
+    }
+  };
 
   return (
     <AppPage>
