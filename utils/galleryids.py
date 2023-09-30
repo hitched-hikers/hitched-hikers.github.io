@@ -8,9 +8,8 @@ if "urls" in d.keys():
 
 print("[", end=" ")
 for i in range(len(google_drive_urls)):
-    image_id = google_drive_urls[i].replace("https://drive.google.com/file/d/",
-                                            "")
-    image_id = image_id.replace("/view\?usp\=drive_link", "")
+    image_id = google_drive_urls[i].replace("https://drive.google.com/file/d/", "")
+    image_id = image_id.replace("/view?usp=drive_link", "")
 
     if i != len(google_drive_urls) - 1:
         print(f"\"{image_id}\", ")

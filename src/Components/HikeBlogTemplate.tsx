@@ -50,7 +50,6 @@ function HikeBlogTemplate(props: HikeBlogProps): JSX.Element {
             <PageHeader
               title={props.hike.name}
               subtitle={props.hike.date.toLocaleDateString("en-US", {
-                weekday: "long",
                 year: "numeric",
                 month: "long",
                 day: "numeric",
@@ -123,7 +122,7 @@ function HikeBlogTemplate(props: HikeBlogProps): JSX.Element {
           })}
         </StyledCarousel>
 
-        <Heading level={2}>The Hike</Heading>
+        <MarkdownHeader level={2}>The Hike</MarkdownHeader>
         <MarkdownContainer>
           <Markdown>{props.blog}</Markdown>
         </MarkdownContainer>
@@ -205,6 +204,11 @@ const CarouselSkeleton = styled(Skeleton)`
 const ThreeDimensionalMapButton = styled(Button)`
   width: 100%;
   margin: 4px 0;
+`;
+
+const MarkdownHeader = styled(Heading)`
+  margin-top: 48px;
+  margin-bottom: 0;
 `;
 
 const MarkdownContainer = styled.div`

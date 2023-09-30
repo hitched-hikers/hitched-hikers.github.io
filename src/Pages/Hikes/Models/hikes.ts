@@ -96,11 +96,11 @@ export const amalfiHikes: Hike[] = [
   {
     name: HikeName.PathOfTheGods,
     blogPath: BlogPath.PathOfTheGods,
-    date: new Date(),
+    date: new Date(2023, 5, 6),
     latitude: 40.625117,
     longitude: 14.534947,
-    distance: 0,
-    elevationGain: 0,
+    distance: 5.8,
+    elevationGain: 1167,
   },
 ];
 

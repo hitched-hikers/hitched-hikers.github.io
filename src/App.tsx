@@ -6,6 +6,8 @@ import { Grommet } from "grommet";
 import HikesPage from "./Pages/Hikes/HikesPage";
 import AlgonquinPeak from "./Pages/BlogPages/AlgonquinPeak/AlgonquinPeak";
 import ThreeDimensionalMap from "./Pages/ThreeDimensionalMap/ThreeDimensionalMap";
+import { BlogPath } from "./Enums/blogPath";
+import PathOfTheGods from "./Pages/BlogPages/PathOfTheGods/PathOfTheGods";
 
 function App(): JSX.Element {
   const [darkMode] = useAtom(darkModeAtom);
@@ -17,7 +19,8 @@ function App(): JSX.Element {
           <Route path="/" element={<HomePage />} />
           <Route path="/hikes" element={<HikesPage />} />
           <Route path="/3d" element={<ThreeDimensionalMap />} />
-          <Route path="/hikes/algonquin-peak" element={<AlgonquinPeak />} />
+          <Route path={BlogPath.AlgonquinPeak} element={<AlgonquinPeak />} />
+          <Route path={BlogPath.PathOfTheGods} element={<PathOfTheGods />} />
         </Routes>
       </HashRouter>
     </Grommet>

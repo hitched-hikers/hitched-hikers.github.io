@@ -7,6 +7,6 @@ if "url" in d.keys():
     google_drive_url = d["url"]
 
 image_id = google_drive_url.replace("https://drive.google.com/file/d/", "")
-image_id = image_id.replace("/view\?usp\=drive_link", "")
+image_id = image_id.replace("/view?usp=drive_link", "")
 
-print(f"https://drive.google.com/thumbnail?id={image_id}&sz=w1024")
+print(f"![image](https://drive.google.com/thumbnail?id={image_id}&sz=w1024)")
