@@ -1,10 +1,11 @@
-### What to bring:
-- small backpack to carry essentials 
-- sunscreen
-- leisure hiking shoes ( we saw someone wearing Birkenstock sandals)
-- water bottle (1L)
-- small snacks
-- a good camera to capture the views
+
+#### What to bring:
+- Small backpack to carry essentials 
+- Sunscreen
+- Leisure hiking shoes ( we saw someone wearing Birkenstock sandals)
+- Water bottle (1L)
+- Small snacks
+- A good camera to capture the views
 
 ---
 
