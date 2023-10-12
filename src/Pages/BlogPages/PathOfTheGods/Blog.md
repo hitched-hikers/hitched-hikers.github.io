@@ -1,3 +1,13 @@
+### What to bring:
+- small backpack to carry essentials 
+- sunscreen
+- leisure hiking shoes ( we saw someone wearing Birkenstock sandals)
+- water bottle (1L)
+- small snacks
+- a good camera to capture the views
+
+---
+
 To arrive at the trailhead was quite a journey! We started our day with a ferry from Minori to Amalfi.
 
 ![image](https://drive.google.com/thumbnail?id=1jRil5FOdAJq2s6MTC7-4eOV7zQ0NiT4p&sz=w1024)
@@ -14,5 +24,13 @@ We tried to get the attention of a baby sheep dog, with no luck. We did however 
 
 ![image](https://drive.google.com/thumbnail?id=11teTTcWAY7UbL7VYUcz8pJrA5nlLlxjN&sz=w1024)
 
+The rest of the hike was relatively flat. We stopped for pictures and to occasionally look over the mountain side... the drop was steep. 
+We even encountered a rock climbing group. If you rock climb and visit this area of Italy, you should do some research into equipment rental.
+
+![image](https://drive.google.com/thumbnail?id=15f-33OJgrn3n7mIiiN6Ui1T-VafieTmp&sz=w1024)
+
+To reward ourselves after the hike, we stopped at a hut that served sandwiches and drinks. The food was so delicious and the aperol spritz was even better. We wondered how they transported the fresh produce up the hill but understood after hearing donkeys braying. 
+
+![image](https://drive.google.com/thumbnail?id=186u7F1T9ovqrIzNHSLcqN99TLc9yjsOh&sz=w1024)
 
 
