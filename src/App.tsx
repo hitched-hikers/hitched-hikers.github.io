@@ -8,6 +8,7 @@ import AlgonquinPeak from "./Pages/BlogPages/AlgonquinPeak/AlgonquinPeak";
 import ThreeDimensionalMap from "./Pages/ThreeDimensionalMap/ThreeDimensionalMap";
 import { BlogPath } from "./Enums/blogPath";
 import PathOfTheGods from "./Pages/BlogPages/PathOfTheGods/PathOfTheGods";
+import PathTheLemons from "./Pages/BlogPages/PathOfTheLemons/PathOfLemons";
 
 function App(): JSX.Element {
   const [darkMode] = useAtom(darkModeAtom);
@@ -21,6 +22,7 @@ function App(): JSX.Element {
           <Route path="/3d" element={<ThreeDimensionalMap />} />
           <Route path={BlogPath.AlgonquinPeak} element={<AlgonquinPeak />} />
           <Route path={BlogPath.PathOfTheGods} element={<PathOfTheGods />} />
+          <Route path={BlogPath.PathOfTheLemons} element={<PathTheLemons />} />
         </Routes>
       </HashRouter>
     </Grommet>

@@ -85,9 +85,9 @@ export const squamishHikes: Hike[] = [
 // Italy
 export const amalfiHikes: Hike[] = [
   {
-    name: HikeName.PathOfTheLemons,
+    name: HikeName.PathOfLemons,
     blogPath: BlogPath.PathOfTheLemons,
-    date: new Date(),
+    date: new Date(2023, 5, 5),
     latitude: 40.66231747545338,
     longitude: 14.630269119553638,
     distance: 0,
