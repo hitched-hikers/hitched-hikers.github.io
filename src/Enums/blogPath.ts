@@ -1,20 +1,22 @@
+import { Path } from "./path";
+
 export enum BlogPath {
     // Canada
-    CoryPass = "/hikes/cory-pass",
-    SulphurMountain = "/hikes/sulphur-mountain",
-    TunnelMountain = "/hikes/tunnel-mountain",
-    MountJacquesCartier = "/hikes/mount-jacques-cartier",
-    MountAlbert = "/hikes/mount-albert",
-    MamquamFalls = "/hikes/mamquam-falls",
-    StawamusChief = "/hikes/stawamus-chief",
+    CoryPass = `${Path.Hikes}/cory-pass`,
+    SulphurMountain = `${Path.Hikes}/sulphur-mountain`,
+    TunnelMountain = `${Path.Hikes}/tunnel-mountain`,
+    MountJacquesCartier = `${Path.Hikes}/mount-jacques-cartier`,
+    MountAlbert = `${Path.Hikes}/mount-albert`,
+    MamquamFalls = `${Path.Hikes}/mamquam-falls`,
+    StawamusChief = `${Path.Hikes}/stawamus-chief`,
 
     // Italy
-    PathOfTheLemons = "/hikes/path-of-the-lemons",
-    PathOfTheGods = "/hikes/path-of-the-gods",
+    PathOfTheLemons = `${Path.Hikes}/path-of-the-lemons`,
+    PathOfTheGods = `${Path.Hikes}/path-of-the-gods`,
 
     // USA
-    MountGiant = "/hikes/mount-giant",
-    AlgonquinPeak = "/hikes/algonquin-peak",
-    JayMountain = "/hikes/jay-mountain",
-    MountMansfield = "/hikes/mount-mansfield"
+    MountGiant = `${Path.Hikes}/mount-giant`,
+    AlgonquinPeak = `${Path.Hikes}/algonquin-peak`,
+    JayMountain = `${Path.Hikes}/jay-mountain`,
+    MountMansfield = `${Path.Hikes}/mount-mansfield`
 }

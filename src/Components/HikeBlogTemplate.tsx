@@ -103,7 +103,6 @@ function HikeBlogTemplate(props: HikeBlogProps): JSX.Element {
         {loadedImages !== props.galleryImageIds.length && <CarouselSkeleton />}
         <StyledCarousel
           hidden={loadedImages !== props.galleryImageIds.length}
-          controls="arrows"
           wrap
           width="640px"
           play={5000}

@@ -41,6 +41,7 @@ export const banffHikes: Hike[] = [
     elevationGain: 0,
   },
 ];
+
 export const gaspeHikes: Hike[] = [
   {
     name: HikeName.MountJacquesCartier,
@@ -61,6 +62,7 @@ export const gaspeHikes: Hike[] = [
     elevationGain: 0,
   },
 ];
+
 export const squamishHikes: Hike[] = [
   {
     name: HikeName.MamquamFalls,
@@ -134,6 +136,7 @@ export const adirondackHikes: Hike[] = [
     elevationGain: 0,
   },
 ];
+
 export const greenMountainHikes: Hike[] = [
   {
     name: HikeName.MountMansfield,
@@ -146,6 +149,7 @@ export const greenMountainHikes: Hike[] = [
   },
 ];
 
+// All hike concatenation 
 export const allHikes = banffHikes
   .concat(gaspeHikes)
   .concat(squamishHikes)

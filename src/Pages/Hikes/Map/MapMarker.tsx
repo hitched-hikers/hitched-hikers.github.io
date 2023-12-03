@@ -44,22 +44,20 @@ function MapMarker(props: MapMarkerProps): JSX.Element {
   }, [isPopupOpen, props.open, togglePopup]);
 
   return (
-    <>
-      <Marker
-        ref={markerRef}
-        onClick={() => props.blogPath && navigate(props.blogPath)}
-        longitude={props.longitude}
-        latitude={props.latitude}
-        popup={popup}
-      >
-        <StyledMapPin
-          onMouseEnter={() => !props.open && togglePopup()}
-          onMouseLeave={() => !props.open && togglePopup()}
-          alt="Map Pin"
-          src={MapPin}
-        />
-      </Marker>
-    </>
+    <Marker
+      ref={markerRef}
+      onClick={() => props.blogPath && navigate(props.blogPath)}
+      longitude={props.longitude}
+      latitude={props.latitude}
+      popup={popup}
+    >
+      <StyledMapPin
+        onMouseEnter={() => !props.open && togglePopup()}
+        onMouseLeave={() => !props.open && togglePopup()}
+        alt="Map Pin"
+        src={MapPin}
+      />
+    </Marker>
   );
 }
 

@@ -1,9 +1,8 @@
-import { Button, Header, Page } from "grommet";
+import { Page } from "grommet";
 import styled from "styled-components";
 import BurgerMenu from "./BurgerMenu";
 import MediaQuery from "react-responsive";
-import { Home } from "grommet-icons";
-import { Link } from "react-router-dom";
+import PageHeader from "./PageHeader";
 
 interface AppPageProps {
   children: React.ReactNode;
@@ -19,14 +18,7 @@ function AppPage(props: AppPageProps): JSX.Element {
         </FullScreenPageMobile>
       </MediaQuery>
       <MediaQuery query="(min-device-width: 1024px)">
-        <Header background="brand">
-          <Link to="/">
-            <Button icon={<Home />} hoverIndicator />
-          </Link>
-          <Link to="/hikes">
-            <Button label="Hikes" secondary hoverIndicator />
-          </Link>
-        </Header>
+        <PageHeader />
         <FullScreenPageDesktop background="pageBackground">
           {props.children}
         </FullScreenPageDesktop>

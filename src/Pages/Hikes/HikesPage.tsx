@@ -1,6 +1,7 @@
 import { Accordion, PageContent, Card } from "grommet";
 import styled from "styled-components";
 import AppPage from "../../Components/AppPage";
+import { US, CA, IT } from "country-flag-icons/react/3x2";
 import Map, { Source, ViewStateChangeEvent } from "react-map-gl";
 import CountryAccordion from "./CountryAccordion";
 import MapboxAccessToken from "../../Utils/MapboxAccessToken.txt";
@@ -76,7 +77,8 @@ function HikesPage(): JSX.Element {
         <LocationCard background={{ dark: "dark-2", light: "light-2" }}>
           <RootAccordion>
             <CountryAccordion
-              country={"🇨🇦 Canada"}
+              country={"Canada"}
+              countryFlag={<CA />}
               regions={[
                 {
                   name: "Banff",
@@ -94,7 +96,8 @@ function HikesPage(): JSX.Element {
             />
 
             <CountryAccordion
-              country={"🇮🇹 Italy"}
+              country={"Italy"}
+              countryFlag={<IT />}
               regions={[
                 {
                   name: "Amalfi",
@@ -104,7 +107,8 @@ function HikesPage(): JSX.Element {
             />
 
             <CountryAccordion
-              country={"🇺🇸 United States of America"}
+              country={"United States of America"}
+              countryFlag={<US />}
               regions={[
                 {
                   name: "Adirondacks",

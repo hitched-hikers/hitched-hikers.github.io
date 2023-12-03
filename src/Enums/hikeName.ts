@@ -9,7 +9,7 @@ export enum HikeName {
   PathOfLemons = "Path of Lemons",
   PathOfTheGods = "Path of the Gods",
   MountGiant = "Mount Giant",
-  AlgonquinPeak = "AlgonquinPeak",
+  AlgonquinPeak = "Algonquin Peak",
   JayMountain = "Jay Mountain",
   MountMansfield = "Mount Mansfield",
 }
