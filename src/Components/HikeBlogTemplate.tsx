@@ -18,7 +18,7 @@ import AppPage from "./AppPage";
 import styled from "styled-components";
 import { imageUrlFormatter } from "../Utils/images";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Hike } from "../Pages/Hikes/Models/hikes";
 
 interface HikeBlogProps {
@@ -35,98 +35,108 @@ function HikeBlogTemplate(props: HikeBlogProps): JSX.Element {
   const [isAllTrailsIframeLoaded, setIsAlltrailsIframeLoaded] = useState(false);
   const [isCoverImageLoaded, setIsCoverImageLoaded] = useState(false);
 
+  const appPageRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    appPageRef.current?.scrollIntoView();
+  }, [appPageRef]);
+
   return (
-    <AppPage>
-      <StyledPageContent alignContent="center">
-        {!isCoverImageLoaded && <CoverImageSkeleton />}
-        <CoverImage
-          onLoad={() => setIsCoverImageLoaded(true)}
-          fit="cover"
-          src={imageUrlFormatter(props.coverPhotoId)}
-          hidden={!isCoverImageLoaded}
-        />
-        <HeaderContainer>
-          <TitleContainer>
-            <PageHeader
-              title={props.hike.name}
-              subtitle={props.hike.date.toLocaleDateString("en-US", {
-                year: "numeric",
-                month: "long",
-                day: "numeric",
-              })}
-            />
-          </TitleContainer>
-        </HeaderContainer>
-
-        <SummaryText>{props.summary}</SummaryText>
-
-        <Heading level={2}>The Trail</Heading>
-        {!isAllTrailsIframeLoaded && <AllTrailsSkeleton />}
-        <AllTrailsIFrame
-          onLoad={() => setIsAlltrailsIframeLoaded(true)}
-          className="alltrails"
-          src={props.allTrailsIframeSource}
-          title={props.hike.name}
-          hidden={!isAllTrailsIframeLoaded}
-        />
-        <StatsCard
-          alignSelf="center"
-          background={{ dark: "dark-2", light: "light-3" }}
-        >
-          <Table>
-            <TableBody>
-              <TableRow>
-                <TableCell scope="row">
-                  <strong>Mileage</strong>
-                </TableCell>
-                <TableCell>{props.hike.distance} mi</TableCell>
-              </TableRow>
-              <TableRow>
-                <TableCell scope="row">
-                  <strong>Elevation Gain</strong>
-                </TableCell>
-                <TableCell>{props.hike.elevationGain} ft</TableCell>
-              </TableRow>
-            </TableBody>
-          </Table>
-        </StatsCard>
-
-        <Link
-          to={`/3d?name=${props.hike.name}&latitude=${String(
-            props.hike.latitude
-          )}&longitude=${String(props.hike.longitude)}`}
-        >
-          <ThreeDimensionalMapButton primary label="See Mountain in 3D" />
-        </Link>
-
-        <Heading level={2}>Gallery</Heading>
-        {loadedImages !== props.galleryImageIds.length && <CarouselSkeleton />}
-        <StyledCarousel
-          hidden={loadedImages !== props.galleryImageIds.length}
-          wrap
-          width="640px"
-          play={5000}
-          fill
-        >
-          {props.galleryImageIds.map((imageId) => {
-            return (
-              <CarouselImage
-                onLoad={() =>
-                  setLoadedImages((loadedImages) => loadedImages + 1)
-                }
-                fit="cover"
-                src={imageUrlFormatter(imageId)}
+    <div ref={appPageRef}>
+      <AppPage>
+        <StyledPageContent alignContent="center">
+          {!isCoverImageLoaded && <CoverImageSkeleton />}
+          <CoverImage
+            onLoad={() => setIsCoverImageLoaded(true)}
+            fit="cover"
+            src={imageUrlFormatter(props.coverPhotoId)}
+            hidden={!isCoverImageLoaded}
+          />
+          <HeaderContainer>
+            <TitleContainer>
+              <PageHeader
+                title={props.hike.name}
+                subtitle={props.hike.date.toLocaleDateString("en-US", {
+                  year: "numeric",
+                  month: "long",
+                  day: "numeric",
+                })}
               />
-            );
-          })}
-        </StyledCarousel>
+            </TitleContainer>
+          </HeaderContainer>
 
-        <MarkdownHeader level={2}>The Hike</MarkdownHeader>
-        <MarkdownContainer>
-          <Markdown>{props.blog}</Markdown>
-        </MarkdownContainer>
-      </StyledPageContent>
-    </AppPage>
+          <SummaryText>{props.summary}</SummaryText>
+
+          <Heading level={2}>The Trail</Heading>
+          {!isAllTrailsIframeLoaded && <AllTrailsSkeleton />}
+          <AllTrailsIFrame
+            onLoad={() => setIsAlltrailsIframeLoaded(true)}
+            className="alltrails"
+            src={props.allTrailsIframeSource}
+            title={props.hike.name}
+            hidden={!isAllTrailsIframeLoaded}
+          />
+          <StatsCard
+            alignSelf="center"
+            background={{ dark: "dark-2", light: "light-3" }}
+          >
+            <Table>
+              <TableBody>
+                <TableRow>
+                  <TableCell scope="row">
+                    <strong>Mileage</strong>
+                  </TableCell>
+                  <TableCell>{props.hike.distance} mi</TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell scope="row">
+                    <strong>Elevation Gain</strong>
+                  </TableCell>
+                  <TableCell>{props.hike.elevationGain} ft</TableCell>
+                </TableRow>
+              </TableBody>
+            </Table>
+          </StatsCard>
+
+          <Link
+            to={`/3d?name=${props.hike.name}&latitude=${String(
+              props.hike.latitude
+            )}&longitude=${String(props.hike.longitude)}`}
+          >
+            <ThreeDimensionalMapButton primary label="See Mountain in 3D" />
+          </Link>
+
+          <Heading level={2}>Gallery</Heading>
+          {loadedImages !== props.galleryImageIds.length && (
+            <CarouselSkeleton />
+          )}
+          <StyledCarousel
+            hidden={loadedImages !== props.galleryImageIds.length}
+            wrap
+            width="640px"
+            play={5000}
+            fill
+          >
+            {props.galleryImageIds.map((imageId) => {
+              return (
+                <CarouselImage
+                  onLoad={() =>
+                    setLoadedImages((loadedImages) => loadedImages + 1)
+                  }
+                  fit="cover"
+                  src={imageUrlFormatter(imageId)}
+                />
+              );
+            })}
+          </StyledCarousel>
+
+          <MarkdownHeader level={2}>The Hike</MarkdownHeader>
+          <MarkdownContainer>
+            <Markdown>{props.blog}</Markdown>
+          </MarkdownContainer>
+        </StyledPageContent>
+      </AppPage>
+    </div>
   );
 }
 

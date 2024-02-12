@@ -28,8 +28,8 @@ function PathTheLemons(): JSX.Element {
       galleryImageIds={[
         "1VPJGnv2h6-bs4JScM94FeJ3mGV0Fos5e",
         "1ON_zM9q1S8aizCuNBSyTQFg4zZh9OjeK",
-        "1HCG6zv00706pfszgr-EJom9rgleXl95d",
         "12y_hWPpAuTqPMJRJYsIAAgSbRqDHm9Gs",
+        "1m_O_Ax8Hi3DHrQZlS3obABDCmuaWUei3",
         "1VfK1Er9yS91jPfPNUQ5sxMf3dl_wESyG",
         "1CSsn-r-BHA3QHjn34FdZmrZR3zLv1sue",
         "1YHvit6OcSu4nE8JIInsUsue6rGVj_qIS",
