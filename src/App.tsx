@@ -25,7 +25,7 @@ function App(): JSX.Element {
 
   return (
     <Grommet theme={theme} full themeMode={darkMode ? "dark" : "light"}>
-      <HashRouter basename={process.env.PUBLIC_URL}>
+      <HashRouter>
         <Suspense fallback={<div>Loading...</div>}>
           <Routes>
             <Route path="/" element={<HomePage />} />
