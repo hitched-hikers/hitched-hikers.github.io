@@ -2,4 +2,4 @@
 
 Holds the source code for the Hitched Hikers blog website.
 
-TODO: Add nicer readme
+TODO: Add nicer readme!
