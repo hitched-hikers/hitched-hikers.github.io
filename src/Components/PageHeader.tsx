@@ -3,7 +3,7 @@ import { Home, Moon, Sun, TreeOption } from "grommet-icons";
 import { useAtom } from "jotai";
 import { Link, useLocation } from "react-router-dom";
 import { darkModeAtom } from "../Utils/Theme";
-import { styled } from "styled-components";
+import styled from "styled-components";
 import { Path } from "../Enums/path";
 
 function PageHeader(): JSX.Element {
