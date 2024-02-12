@@ -14,4 +14,4 @@ divider!
 
 A picture!
 
-![Pic](https://drive.google.com/thumbnail?id=1ST7TQ_i3EaHpdASGsvAPSKO6wdh_OndW&sz=w1024)
+<img src="https://drive.google.com/thumbnail?id=1ST7TQ_i3EaHpdASGsvAPSKO6wdh_OndW&sz=w1024" />
