@@ -230,6 +230,8 @@ const MarkdownContainer = styled.div`
     height: auto;
     border-radius: 8px;
   }
+
+  padding-bottom: 16px;
 `;
 
 export default HikeBlogTemplate;

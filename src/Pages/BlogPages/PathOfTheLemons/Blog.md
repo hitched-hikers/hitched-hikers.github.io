@@ -39,7 +39,6 @@ _A lemon farm with trees full of lemons_
 <center>
 <img src="https://drive.google.com/thumbnail?id=1yrMLZ4Yug7wIeBcaqEFDB9M9VTSNlzYk&sz=w1024" />
 </center>
-<br>
 <center>
 _A cute sleepy cat_
 </center>
