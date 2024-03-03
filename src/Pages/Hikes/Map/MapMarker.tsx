@@ -1,10 +1,10 @@
-import { Marker } from "react-map-gl";
 import MapPin from "./MapPin.png";
 import styled from "styled-components";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import mapboxgl from "mapbox-gl";
 import "./MapMarker.css";
 import { useNavigate } from "react-router-dom";
+import { Marker } from "react-map-gl";
 
 interface MapMarkerProps {
   blogPath?: string;
@@ -16,7 +16,7 @@ interface MapMarkerProps {
 }
 
 function MapMarker(props: MapMarkerProps): JSX.Element {
-  const markerRef = useRef<mapboxgl.Marker>(null);
+  const markerRef = useRef<any>(null);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const navigate = useNavigate();
 

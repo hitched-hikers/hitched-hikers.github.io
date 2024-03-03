@@ -21,6 +21,9 @@ const PathOfLemons = lazy(
 const AlgonquinPeak = lazy(
   () => import("./Pages/BlogPages/AlgonquinPeak/AlgonquinPeak")
 );
+const MamquamFalls = lazy(
+  () => import("./Pages/BlogPages/MamquamFalls/MamquamFalls")
+);
 
 const LoadingContainer = styled(Page)`
   display: flex;
@@ -49,6 +52,7 @@ function App(): JSX.Element {
             <Route path={BlogPath.AlgonquinPeak} element={<AlgonquinPeak />} />
             <Route path={BlogPath.PathOfTheGods} element={<PathOfTheGods />} />
             <Route path={BlogPath.PathOfTheLemons} element={<PathOfLemons />} />
+            <Route path={BlogPath.MamquamFalls} element={<MamquamFalls />} />
           </Routes>
         </Suspense>
       </HashRouter>
